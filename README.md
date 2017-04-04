@@ -1,13 +1,17 @@
 # React2 MVP
 MVP for React2
 
+## Install
 
-**Install**
+## Run
+`npm start`
 
-**Run**
+## Build
+`npm run build`
 
-**Build**
+## Lint
+`npm run lint`
 
-**Test**
+## Test
 
-**Deploy**
+## Deploy
