@@ -2,6 +2,7 @@
 MVP for React2
 
 ## Install
+`npm install`
 
 ## Run
 `npm start`
