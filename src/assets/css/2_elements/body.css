@@ -1,7 +1,23 @@
 body {
-  background-color: var(--background-color-default);
-  color: #fff;
-  height: 100%;
+  background-image: url("../img/background.png");
+  background-size: cover;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-normal);
+  height: 100vh;
+  margin: 0;
+  max-height: 100vh;
+  max-width: 100%;
   position: relative;
   width: 100%;
+
+  > div {
+    height: 100%;
+    position: relative;
+  }
+
+  > div > div {
+    height: 100%;
+    position: relative;
+  }
 }

@@ -1,0 +1,21 @@
+/*
+  Link
+
+  Markup:
+  <a href="#" class="c-link">Link</button>
+
+  Styleguide: Components.Link
+*/
+
+.c-link {
+  color: #fff;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  opacity: 0.3;
+
+  @media screen and (min-width: 736px) {
+    color: var(--color-blue);
+    font-size: var(--font-size);
+    opacity: 1;
+  }
+}

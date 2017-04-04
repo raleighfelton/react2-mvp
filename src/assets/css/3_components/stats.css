@@ -1,0 +1,56 @@
+/*
+  Stats
+
+  Markup:
+  <div class="c-stats">
+    <span class="c-stat" href="#">
+      <img class="c-stat__icon c-stat__icon--users" src="./assets/img/users.svg" />
+      <span class="c-stat__value">456k</span>
+    </span>
+    <span class="c-stat" href="#">
+      <img class="c-stat__icon c-stat__icon--friend" src="./assets/img/friend.svg" />
+      <span class="c-stat__value">34</span>
+    </span>
+  </div>
+
+  Styleguide: Components.Stats
+*/
+
+.c-stats {
+  display: none;
+
+  @media screen and (min-width: 736px) {
+    display: flex;
+    text-align: right;
+  }
+}
+
+/*
+  Stat
+
+  Markup:
+  <span class="c-stat" href="#">
+    <img class="c-stat__icon c-stat__icon--users" src="./assets/img/users.svg" />
+    <span class="c-stat__value">456k</span>
+  </span>
+
+  Styleguide: Components.Stat
+*/
+
+.c-stat {
+  padding: var(--spacing);
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  &__icon {
+    border: 0;
+    height: 18px;
+  }
+
+  &__value {
+    color: var(--color-grey-light);
+    margin-left: var(--spacing);
+  }
+}
