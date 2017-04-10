@@ -1,8 +1,11 @@
 :root {
   --color-black: #141515;
   --color-blue: #31a4de;
+  --color-darkgrey: ##343536;
   --color-grey-light: #ccc;
-  --font-family: sans-serif;
+  --color-primary: #e025f8;
+  --font-family-bold: "Gilroy-Bold", "Helvetica Neue", Arial, sans-serif;
+  --font-family-regular: "Gilroy-Regular", "Helvetica Neue", Arial, sans-serif;
   --font-size-sm: 12px;
   --font-size: 16px;
   --font-size-lg: 24px;
