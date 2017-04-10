@@ -1,13 +1,18 @@
 # React2 MVP
 MVP for React2
 
+## Install
+`npm install`
 
-**Install**
+## Run
+`npm start` then navigate to: [localhost on port 5000](http://localhost:5000)
 
-**Run**
+## Build
+`npm run build`
 
-**Build**
+## Lint
+`npm run lint`
 
-**Test**
+## Test
 
-**Deploy**
+## Deploy
