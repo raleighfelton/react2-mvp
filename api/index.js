@@ -22,7 +22,7 @@ app.get('/api', (req, res) => {
 
 let port;
 if (process.env.NODE_ENV === 'production') {
-  port = 80;
+  port = process.env.PORT;
 } else {
   port = 3000;
 }
