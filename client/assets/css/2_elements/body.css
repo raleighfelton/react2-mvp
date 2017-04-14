@@ -1,0 +1,18 @@
+body {
+  background-image: url("../img/background.png");
+  background-size: cover;
+  font-family: var(--font-family-regular);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-normal);
+  height: 100vh;
+  margin: 0;
+  max-height: 100vh;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.body {
+  height: 100%;
+  position: relative;
+}
