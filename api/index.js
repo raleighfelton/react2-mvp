@@ -20,6 +20,13 @@ app.get('/api', (req, res) => {
   res.send({ sah: 'doo' });
 });
 
-app.listen(3000, () => {
+let port;
+if (process.env.NODE_ENV === 'production') {
+  port = process.env.PORT;
+} else {
+  port = 3000;
+}
+
+app.listen(port, () => {
   console.log('😱  React backend up and running');
 });
