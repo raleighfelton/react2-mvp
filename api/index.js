@@ -10,25 +10,6 @@ app.get('/api', (req, res) => {
 
 io.on('connection', (socket) => {
   socket.on('reaction', function (reaction) {
-    socket.emit('reaction', reaction.reaction);
-    // socket.emit('reaction', {
-    //   user: reaction.userID,
-    //   reaction: reaction.score
-    // });
+    io.emit('reaction', reaction);
   });
 });
-
-MongoClient.connect("mongodb://localhost:27017/react2", { promiseLibrary: Promise })
-  .then((db) => {
-    app.locals.db = db;
-    const port = (process.env.NODE_ENV === 'production')? process.env.PORT : 3000;
-    http.listen(port, () => {
-      console.log(`Listening on port ${port}`);
-    });
-    // app.listen(port, () => {
-    //   console.log(`😱  React backend up and running on localhost:${port}`);
-    // });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
