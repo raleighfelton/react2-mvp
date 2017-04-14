@@ -14,9 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json'}));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '/build/index.html'));
-});
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('/api', (req, res) => {
   res.send({ sah: 'doo' });

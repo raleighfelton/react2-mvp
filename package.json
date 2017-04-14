@@ -7,7 +7,7 @@
   "license": "Closed",
   "scripts": {
     "watch-client": "webpack --progress --colors --watch",
-    "start": "nodemon --watch api api/index.js"
+    "start": "webpack & nodemon --watch api api/index.js"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

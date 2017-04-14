@@ -60,7 +60,6 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
-      hash: true,
       template: 'client/index.html',
       favicon: 'client/assets/img/favicon/favicon.ico'
     })
