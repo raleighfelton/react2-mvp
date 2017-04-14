@@ -10,6 +10,12 @@ app.get('/api', (req, res) => {
 
 io.on('connection', (socket) => {
   socket.on('reaction', function (reaction) {
-    io.emit('reaction', reaction);
+    socket.emit('reaction', reaction.reaction);
   });
+});
+
+const port = (process.env.NODE_ENV === 'production')? process.env.PORT : 3000;
+
+http.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
