@@ -25,5 +25,12 @@
     "postcss-reporter": "^3.0.0",
     "precss": "^1.4.0",
     "webpack": "^2.4.1"
+    "start": "nodemon --watch api api/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "nodemon": "^1.11.0"
   }
 }
