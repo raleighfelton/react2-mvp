@@ -6,11 +6,11 @@
   "repository": "git@github.com:raleighfelton/react2-mvp.git",
   "license": "Closed",
   "scripts": {
+    "lint": "eslint --ext .js,.jsx ./client && stylelint ./client/**/*.css",
     "watch-client": "webpack --progress --colors --watch",
     "build": "NODE_ENV=production webpack --progress --colors",
     "start": "webpack & nodemon --watch api api/index.js",
-    "heroku-postbuild": "yarn run build",
-    "build": "webpack"
+    "heroku-postbuild": "yarn run build"
   },
   "engines": {
     "node": "7.7.4"
@@ -27,6 +27,7 @@
     "css-loader": "^0.28.0",
     "eslint": "^3.19.0",
     "eslint-config-smashing-boxes": "^1.1.1",
+    "eslint-plugin-react": "^6.10.3",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "favicons-webpack-plugin": "^0.0.7",
@@ -46,6 +47,8 @@
     "precss": "^1.4.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
     "sanitize.css": "^5.0.0",
     "style-loader": "^0.16.1",
     "stylelint": "^7.10.1",
