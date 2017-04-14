@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const path = require('path');
 const { errorHandler, clientErrorHandler } = require('./helpers/express');
 
 const app = express();
@@ -14,9 +15,13 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json'}));
 
 app.get('/', (req, res) => {
-  res.render({ sah: 'doo' });
+  res.sendFile(path.join(__dirname, '..', '/build/index.html'));
+});
+
+app.get('/api', (req, res) => {
+  res.send({ sah: 'doo' });
 });
 
 app.listen(3000, () => {
-  console.log("😱  React backend up and running");
+  console.log('😱  React backend up and running');
 });
