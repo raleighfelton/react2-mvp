@@ -8,6 +8,7 @@
   "scripts": {
     "watch-client": "webpack --progress --colors --watch",
     "start": "webpack & nodemon --watch api api/index.js",
+    "heroku-postbuild": "yarn run build",
     "build": "webpack"
   },
   "engines": {
