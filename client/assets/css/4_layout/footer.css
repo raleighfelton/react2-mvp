@@ -1,0 +1,5 @@
+.l-footer {
+  bottom: var(--spacing);
+  position: absolute;
+  right: var(--spacing);
+}
