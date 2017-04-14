@@ -6,7 +6,8 @@
   "repository": "git@github.com:raleighfelton/react2-mvp.git",
   "license": "Closed",
   "scripts": {
-    "watch-client": "webpack --progress --colors --watch"
+    "watch-client": "webpack --progress --colors --watch",
+    "start": "nodemon --watch api api/index.js"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -25,7 +26,6 @@
     "postcss-reporter": "^3.0.0",
     "precss": "^1.4.0",
     "webpack": "^2.4.1"
-    "start": "nodemon --watch api api/index.js"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
