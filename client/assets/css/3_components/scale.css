@@ -37,6 +37,13 @@
   margin-right: auto;
   width: calc(var(--spacing) * 6);
 
+  &__tick-container {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
   &__tick {
     background-image: linear-gradient(to right, #ccc 33%, rgba(0, 0, 0, 0) 0%);
     background-position: bottom;
