@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.jsx ./client && stylelint ./client/**/*.css",
     "watch-client": "webpack --progress --colors --watch",
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack --progress --colors",
     "start": "webpack & nodemon --watch api api/index.js",
     "heroku-postbuild": "yarn run build"
   },
