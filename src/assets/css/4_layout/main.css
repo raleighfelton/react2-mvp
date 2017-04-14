@@ -1,9 +1,0 @@
-.l-main {
-  height: calc(100% - (var(--spacing) * 2));
-  position: relative;
-
-  @media screen and (min-width: 736px) {
-    display: flex;
-    height: calc(100% - (var(--spacing) * 5));
-  }
-}
