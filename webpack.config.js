@@ -2,10 +2,12 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var CompressionPlugin = require('compression-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var directory = 'build';
 
-module.exports = {
+var config = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },
@@ -26,17 +28,6 @@ module.exports = {
               presets: ['stage-2', 'react', 'es2015']
             }
           }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader?importLoaders=1',
-            query: { sourceMap: true }
-          },
-          'postcss-loader'
         ]
       },
       {
@@ -65,3 +56,55 @@ module.exports = {
     })
   ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.bail = true;
+  config.profile = false;
+  config.devtool = 'source-map';
+
+  config.module.rules = config.module.rules.concat([
+    {
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: 'css-loader?importLoaders=1',
+            query: { minimize: true }
+          },
+          'postcss-loader'
+        ]
+      })
+    },
+  ]);
+
+  config.plugins = config.plugins.concat([
+    new CompressionPlugin(),
+    new ExtractTextPlugin('assets/styles.css'),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      mangle: true,
+      output: {
+        comments: false
+      }
+    })
+  ]);
+} else {
+  config.module.rules = config.module.rules.concat([
+    {
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader?importLoaders=1',
+          query: { sourceMap: true }
+        },
+        'postcss-loader'
+      ]
+    }
+  ]);
+}
+
+module.exports = config;

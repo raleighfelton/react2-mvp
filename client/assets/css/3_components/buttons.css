@@ -1,0 +1,52 @@
+/*
+  Buttons
+
+  Markup:
+  <a class="c-button" href="#" role="button">Link</a>
+  <button class="c-button" type="submit">Button</button>
+  <input class="c-button" type="button" value="Input">
+  <input class="c-button" type="submit" value="Submit">
+  <input class="c-button" type="reset" value="Reset">
+
+  Styleguide: Components.Buttons
+*/
+
+.c-button {
+  color: var(--color-blue);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-bold);
+  padding: var(--spacing-sm) var(--spacing);
+
+  /*
+    Hide Mobile Buttons
+
+    Markup:
+    <button class="c-button c-button--hide-mobile">Button</button>
+
+    Styleguide: Components.Buttons.Hide Mobile Buttons
+  */
+
+  &--hide-mobile {
+    display: none;
+
+    @media screen and (min-width: 736px) {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  /*
+    Tall Buttons
+
+    Markup:
+    <button class="c-button c-button--tall">Button</button>
+
+    Styleguide: Components.Buttons.Tall Buttons
+  */
+
+  &--tall {
+    padding-bottom: calc(var(--spacing) * 2.5);
+    padding-top: calc(var(--spacing) * 2.5);
+  }
+}
