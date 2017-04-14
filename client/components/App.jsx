@@ -1,22 +1,19 @@
 import React from 'react';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
-import Header from './Header';
-import Footer from './Footer';
-import Scale from './Scale';
+import Comparing from './Comparing';
+import Landing from './Landing';
+import Reacting from './Reacting';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <div className="l-main">
-        <h1 className="c-title">#SuperBowl51</h1>
-        <div className="l-content">
-          <Scale />
-          <button className="c-button c-button--tall c-button--hide-mobile">Compare</button>
-        </div>
+    <Router>
+      <div className="body">
+        <Route exact path="/" component={Landing} />
+        <Route path="/reacting" component={Reacting} />
+        <Route path="/compare" component={Comparing} />
       </div>
-      <Footer />
-    </div>
+    </Router>
   );
 }
 

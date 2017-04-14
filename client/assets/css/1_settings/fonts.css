@@ -1,26 +1,31 @@
 @import url("//hello.myfonts.net/count/32b095");
+
 @font-face {
   font-family: "Gilroy-Bold";
   src: url("../webfonts/32B095_0_0.eot");
   src: url("../webfonts/32B095_0_0.eot?#iefix") format("embedded-opentype"),
-  url("../webfonts/32B095_0_0.woff2") format("woff2"),
-  url("../webfonts/32B095_0_0.woff") format("woff"),
-  url("../webfonts/32B095_0_0.ttf") format("truetype"),
-  url("../webfonts/32B095_0_0.svg#wf") format("svg");
+    url("../webfonts/32B095_0_0.woff2") format("woff2"),
+    url("../webfonts/32B095_0_0.woff") format("woff"),
+    url("../webfonts/32B095_0_0.ttf") format("truetype"),
+    url("../webfonts/32B095_0_0.svg#wf") format("svg");
 }
+
 @font-face {
   font-family: "Gilroy-Heavy";
   src: url("../webfonts/32B095_1_0.eot");
-  src: url("../webfonts/32B095_1_0.eot?#iefix") format("embedded-opentype"),url("../webfonts/32B095_1_0.woff2") format("woff2"),
-  url("../webfonts/32B095_1_0.woff") format("woff"),
-  url("../webfonts/32B095_1_0.ttf") format("truetype"),
-  url("../webfonts/32B095_1_0.svg#wf") format("svg");}
+  src: url("../webfonts/32B095_1_0.eot?#iefix") format("embedded-opentype"),
+    url("../webfonts/32B095_1_0.woff2") format("woff2"),
+    url("../webfonts/32B095_1_0.woff") format("woff"),
+    url("../webfonts/32B095_1_0.ttf") format("truetype"),
+    url("../webfonts/32B095_1_0.svg#wf") format("svg");
+}
+
 @font-face {
   font-family: "Gilroy-Regular";
   src: url("../webfonts/32B095_2_0.eot");
   src: url("../webfonts/32B095_2_0.eot?#iefix") format("embedded-opentype"),
-  url("../webfonts/32B095_2_0.woff2") format("woff2"),
-  url("../webfonts/32B095_2_0.woff") format("woff"),
-  url("../webfonts/32B095_2_0.ttf") format("truetype"),
-  url("../webfonts/32B095_2_0.svg#wf") format("svg");
+    url("../webfonts/32B095_2_0.woff2") format("woff2"),
+    url("../webfonts/32B095_2_0.woff") format("woff"),
+    url("../webfonts/32B095_2_0.ttf") format("truetype"),
+    url("../webfonts/32B095_2_0.svg#wf") format("svg");
 }

@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ProfileImage from './ProfileImage';
 
 function Header() {
   return (
     <header className="l-header">
-      <a className="c-link" href="#">Back</a>
+      <Link to="/" className="c-link">Back</Link>
       <ProfileImage />
     </header>
   );
