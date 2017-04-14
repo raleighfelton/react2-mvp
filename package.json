@@ -7,7 +7,11 @@
   "license": "Closed",
   "scripts": {
     "watch-client": "webpack --progress --colors --watch",
-    "start": "webpack & nodemon --watch api api/index.js"
+    "start": "webpack & nodemon --watch api api/index.js",
+    "postinstall": "npm run build"
+  },
+  "engines": {
+    "node": "7.7.4"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
