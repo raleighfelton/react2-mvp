@@ -1,4 +1,36 @@
-button {
-  background: none;
-  border: 0;
+/*button Styles*/
+.c-button {
+  background: transparent;
+  border: 2px solid var(--color-purple);
+  border-radius: 4px;
+  color: var(--color-purple);
+  cursor: pointer;
+  padding: 16px 48px;
+  text-transform: uppercase;
+
+  &--round {
+    border-radius: 100px;
+  }
+
+  &--small{
+    padding: 12px 48px;
+  }
+
+  &:hover{
+    box-shadow: inset 0px 0px 0px 3px var(--color-purple);
+    transition: .3s;
+  }
+
+  &--filled{
+    background: var(--color-black);
+    border: none;
+    color: white;
+  }
+
+  &--filled:hover {
+    background-color: var(--color-grey-dark);
+    color: black;
+    transition: background-color .2s ease-out;
+    transition: color .2s ease-out;
+  }
 }

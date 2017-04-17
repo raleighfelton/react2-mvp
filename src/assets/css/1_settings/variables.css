@@ -3,7 +3,8 @@
   --color-blue: #31a4de;
   --color-darkgrey: ##343536;
   --color-grey-light: #ccc;
-  --color-primary: #e025f8;
+  --color-purple: #E025F8;
+  --color-primary: var(--color-primary);
   --font-family-bold: "Gilroy-Bold", "Helvetica Neue", Arial, sans-serif;
   --font-family-regular: "Gilroy-Regular", "Helvetica Neue", Arial, sans-serif;
   --font-size-sm: 12px;
