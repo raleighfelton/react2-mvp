@@ -17,6 +17,7 @@
 /* 3_components */
 @import "3_components/buttons";
 @import "3_components/links";
+@import "3_components/logo";
 @import "3_components/profile";
 @import "3_components/scale";
 @import "3_components/stats";

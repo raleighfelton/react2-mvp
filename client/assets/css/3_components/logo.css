@@ -1,0 +1,15 @@
+/*
+  Logo
+
+  Markup:
+  <div class="c-logo">
+    <img src="http://react2.co/images/react2-logo.svg" alt="React2 logo">
+  </div>
+
+  Styleguide: Components.Logo
+*/
+
+.c-logo {
+  height: calc(var(--spacing) * 7);
+  padding: var(--spacing-lg);
+}

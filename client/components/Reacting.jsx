@@ -20,7 +20,7 @@ function Reacting({ addReaction, ratings }) {
         <div className="l-content">
           <Scale addReaction={addReaction} ratings={ratings} />
           <Link
-            className="c-button c-button--tall c-button--hide-mobile"
+            className="c-button c-button--tall c-button--hide-mobile c-button--blue"
             to="/Compare"
           >
             Compare
