@@ -12,10 +12,56 @@
 */
 
 .c-button {
-  color: var(--color-blue);
-  font-size: var(--font-size);
-  font-weight: var(--font-weight-bold);
-  padding: var(--spacing-sm) var(--spacing);
+  background: transparent;
+  border: 2px solid var(--color-purple);
+  border-radius: 4px;
+  color: var(--color-purple);
+  padding: var(--spacing) var(--spacing-xl);
+  text-transform: uppercase;
+
+  &:hover {
+    box-shadow: inset 0 0 0 3px var(--color-purple);
+    transition: 0.3s;
+  }
+
+  /*
+    Blue Buttons
+
+    Markup:
+    <button class="c-button c-button--blue">Button</button>
+
+    Styleguide: Components.Buttons.Blue Buttons
+  */
+
+  &--blue {
+    border: inherit;
+    border-radius: 0;
+    color: var(--color-blue);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-bold);
+    padding: var(--spacing-sm) var(--spacing);
+  }
+
+  /*
+    Filled Buttons
+
+    Markup:
+    <button class="c-button c-button--filled">Button</button>
+
+    Styleguide: Components.Buttons.Filled Buttons
+  */
+
+  &--filled {
+    background: var(--color-black);
+    border: none;
+    color: var(--color-white);
+
+    &:hover {
+      background-color: var(--color-grey-dark);
+      color: var(--color-black);
+      transition: color 0.2s ease-out, background-color 0.2s ease-out;
+    }
+  }
 
   /*
     Hide Mobile Buttons
@@ -34,6 +80,32 @@
       text-align: center;
       width: 100%;
     }
+  }
+
+  /*
+    Round Buttons
+
+    Markup:
+    <button class="c-button c-button--round">Button</button>
+
+    Styleguide: Components.Buttons.Round Buttons
+  */
+
+  &--round {
+    border-radius: 100px;
+  }
+
+  /*
+    Small Buttons
+
+    Markup:
+    <button class="c-button c-button--hide-small">Button</button>
+
+    Styleguide: Components.Buttons.Small Buttons
+  */
+
+  &--small {
+    padding: 12px 48px;
   }
 
   /*

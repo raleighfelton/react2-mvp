@@ -3,7 +3,15 @@ h1, h2, h3, h4, h5, h6, a, button {
   font-family: var(--font-family-bold);
 }
 
-h1 { font-size: var(--font-size-xxxl); }
+h1 {
+  font-size: var(--font-size-xxl);
+  line-height: 68px;
+
+  @media screen and (min-width: 736px) {
+    font-size: var(--font-size-xxxl);
+    line-height: 100px;
+  }
+}
 h2 { font-size: var(--font-size-xxl); }
 h3 { font-size: var(--font-size-xl); }
 h4 { font-size: 40px; }
