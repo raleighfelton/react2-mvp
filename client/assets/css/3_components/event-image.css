@@ -1,0 +1,15 @@
+/*
+  Event Image
+
+  Markup:
+  <div className="c-event-image">
+    <img src={eventImage} height="320" width="320" alt="event image" />
+  </div>
+
+  Styleguide: Components.Event-Image
+*/
+
+.c-event-image {
+  margin: var(--spacing-lg) auto var(--spacing-xl) auto;
+  text-align: center;
+}

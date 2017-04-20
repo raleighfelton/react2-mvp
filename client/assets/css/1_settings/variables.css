@@ -13,8 +13,8 @@
   --font-size-xl: 48px;
   --font-size-xxl: 80px;
   --font-size-xxxl: 120px;
-  --font-weight-bold: 600;
-  --font-weight-normal: 400;
+  /*--font-weight-bold: 600;
+  --font-weight-normal: 400;*/
   --radius: 10px;
   --spacing-sm: var(--font-size-sm);
   --spacing: var(--font-size);

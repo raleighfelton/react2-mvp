@@ -1,4 +1,5 @@
 .l-main {
+  /*background-color: blue;*/
   height: calc(100% - (var(--spacing) * 2));
   margin-left: auto;
   margin-right: auto;
@@ -11,4 +12,27 @@
     display: flex;
     height: calc(100% - (var(--spacing) * 5));
   }
+
+  & p {
+    color: var(--color-white);
+    font-size: var(--font-size);
+    line-height: var(--font-size-lg);
+    margin-top: var(--spacing-xl);
+    max-width: 300px;
+  }
+
+  & span {
+    color: var(--color-purple);
+  }
 }
+
+/*.l-main p {
+  color: var(--color-white);
+  font-size: var(--font-size);
+  line-height: var(--font-size-lg);
+  margin-top: var(--spacing-xl);
+}*/
+
+/*.l-main span {
+  color: var(--color-purple);
+}*/
