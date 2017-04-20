@@ -16,7 +16,8 @@
   border: 2px solid var(--color-purple);
   border-radius: 4px;
   color: var(--color-purple);
-  padding: var(--spacing) var(--spacing-xl);
+  display: inline-block;
+  padding: var(--spacing) var(--spacing-lg);
   text-transform: uppercase;
 
   &:hover {
