@@ -1,0 +1,21 @@
+/*
+  Rating
+
+  Markup:
+  <div className="c-rating">
+    <img className="c-rating__avatar" src="../assets/img/profile.png" alt="rating avatar" />
+  </div>
+
+  Styleguide: Components.Rating
+*/
+
+.c-rating {
+  position: absolute;
+  right: -var(--spacing-xl);
+
+  &__avatar {
+    border-radius: 50%;
+    height: var(--spacing-xl);
+    width: var(--spacing-xl);
+  }
+}
