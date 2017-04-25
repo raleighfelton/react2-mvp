@@ -10,6 +10,6 @@
 */
 
 .c-event-image {
-  margin: var(--spacing-lg) auto var(--spacing-xl) auto;
+  margin: var(--spacing-lg) auto var(--spacing-xl);
   text-align: center;
 }

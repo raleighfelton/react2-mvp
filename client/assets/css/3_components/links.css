@@ -9,8 +9,8 @@
 
 .c-link {
   color: #fff;
+  font-family: var(--font-family-bold);
   font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
   opacity: 0.3;
 
   @media screen and (min-width: 736px) {
