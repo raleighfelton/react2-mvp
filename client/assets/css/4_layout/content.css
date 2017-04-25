@@ -2,6 +2,7 @@
   flex-basis: 20%;
   height: calc(100% - (var(--spacing) * 8));
   margin-top: var(--spacing-lg);
+  text-align: center;
 
   @media screen and (min-width: 736px) {
     height: calc(100% - (var(--spacing) * 6));

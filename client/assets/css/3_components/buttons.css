@@ -39,7 +39,6 @@
     border-radius: 0;
     color: var(--color-blue);
     font-size: var(--font-size);
-    font-weight: var(--font-weight-bold);
     padding: var(--spacing-sm) var(--spacing);
   }
 

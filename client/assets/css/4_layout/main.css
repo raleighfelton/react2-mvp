@@ -1,9 +1,8 @@
 .l-main {
-  /*background-color: blue;*/
   height: calc(100% - (var(--spacing) * 2));
   margin-left: auto;
   margin-right: auto;
-  max-width: 1024px;
+  max-width: 496px;
   padding-left: var(--spacing);
   padding-right: var(--spacing);
   position: relative;
@@ -11,28 +10,6 @@
   @media screen and (min-width: 736px) {
     display: flex;
     height: calc(100% - (var(--spacing) * 5));
-  }
-
-  & p {
-    color: var(--color-white);
-    font-size: var(--font-size);
-    line-height: var(--font-size-lg);
-    margin-top: var(--spacing-xl);
-    max-width: 300px;
-  }
-
-  & span {
-    color: var(--color-purple);
+    max-width: 1024px;
   }
 }
-
-/*.l-main p {
-  color: var(--color-white);
-  font-size: var(--font-size);
-  line-height: var(--font-size-lg);
-  margin-top: var(--spacing-xl);
-}*/
-
-/*.l-main span {
-  color: var(--color-purple);
-}*/

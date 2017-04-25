@@ -4,7 +4,6 @@ body {
   background-size: cover;
   font-family: var(--font-family-regular);
   font-size: var(--font-size);
-  font-weight: var(--font-weight-normal);
   height: 100vh;
   margin: 0;
   max-height: 100vh;

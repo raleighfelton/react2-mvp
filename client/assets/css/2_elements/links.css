@@ -1,6 +1,5 @@
 a {
   color: var(--color-blue);
-  font-weight: var(--font-weight-bold);
   margin: 0;
   text-decoration: none;
 }

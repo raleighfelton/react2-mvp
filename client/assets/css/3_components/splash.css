@@ -1,0 +1,12 @@
+
+.c-splash__p {
+  margin-top: var(--spacing);
+  max-width: 500px;
+  padding: var(--spacing-lg);
+  text-align: left;
+}
+
+.c-splash__footer {
+  margin-top: 96px;
+  text-align: center;
+}

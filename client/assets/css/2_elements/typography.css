@@ -1,5 +1,5 @@
 h1, h2, h3, h4, h5, h6, a, button {
-  color: #fff;
+  color: var(--color-white);
   font-family: var(--font-family-bold);
 }
 
@@ -17,26 +17,17 @@ h2 {
   font-size: var(--font-size-xxl);
 }
 
-/*h3 {
-  font-size: var(--font-size-xl);
-}*/
-
-/*h4 {
-  font-size: 40px;
-}*/
-
-/*h5 {
-  font-size: var(--font-size-lg);
-}*/
-
-/*h6, p {
-  font-size: var(--font-size);
-}*/
-
 p {
+  color: var(--color-white);
   font-family: var(--font-family-regular);
+  font-size: var(--font-size);
+  line-height: var(--font-size-lg);
 }
 
 a {
   text-decoration: none;
+}
+
+span {
+  color: var(--color-purple);
 }
