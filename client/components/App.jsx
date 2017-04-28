@@ -33,8 +33,16 @@ class App extends Component {
   }
 
   update(rating) {
-    this.setState({
-      ratings: this.state.ratings.concat(rating)
+    this.setState((oldState) => {
+      const newState = {};
+
+      if (rating.userID === oldState.userID) {
+        newState.myRating = rating.reaction;
+      }
+
+      newState.ratings = oldState.ratings.concat(rating);
+
+      return newState;
     });
   }
 
@@ -47,9 +55,9 @@ class App extends Component {
     return (
       <Router>
         <div className="body">
-          <Route exact path="/" render={() => <Landing { ...props } />} />
-          <Route path="/reacting" render={() => <Reacting { ...props } />} />
-          <Route path="/compare" render={() => <Comparing { ...props } />} />
+          <Route exact path="/" render={() => <Landing {...props} />} />
+          <Route path="/reacting" render={() => <Reacting {...props} />} />
+          <Route path="/compare" render={() => <Comparing {...props} />} />
         </div>
       </Router>
     );

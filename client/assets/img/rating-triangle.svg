@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="21px" viewBox="0 0 17 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Triangle 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="74.637424%" y1="50%" x2="44.1018762%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F825F0" offset="0%"></stop>
+            <stop stop-color="#7C25F8" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="00.02__POC__Live-Reactions-Copy" transform="translate(-746.000000, -411.000000)" fill="url(#linearGradient-1)">
+            <g id="Group" transform="translate(190.000000, 296.000000)">
+                <g id="profile" transform="translate(556.000000, 105.884558)">
+                    <polygon id="Triangle-1" points="17 10 17 30 0 20"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
