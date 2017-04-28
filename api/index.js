@@ -9,7 +9,7 @@ app.get('/api', (req, res) => {
 
 io.on('connection', (socket) => {
   socket.on('reaction', function (reaction) {
-    socket.emit('reaction', reaction);
+    io.emit('reaction', reaction);
   });
 });
 
