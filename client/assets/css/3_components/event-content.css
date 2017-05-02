@@ -1,0 +1,29 @@
+.c-event-content {
+  margin-top: 60px;
+  max-width: 756px;
+  text-align: center;
+  width: 90%;
+  /*max-width: cal(100% - 16px);*/
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 0px;
+    max-width: 50%;
+  }
+
+  &__name {
+    text-align: center;
+  }
+}
+
+/*.c-event-content {
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    display: block;
+  }
+
+  &__text {
+    background: red;
+  }
+}*/

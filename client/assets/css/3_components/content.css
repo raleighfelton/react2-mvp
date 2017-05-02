@@ -1,0 +1,17 @@
+.c-content {
+  /*display: flex;
+  flex-direction: column;*/
+
+  @media screen and (min-width: 1024px) {
+    max-width: 50%;
+  }
+
+  &__p {
+    margin-bottom: 40px;
+    max-width: 392px;
+
+    @media screen and (min-width: 736px) {
+      /*order: -1;*/
+    }
+  }
+}
