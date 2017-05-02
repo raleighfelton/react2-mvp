@@ -12,4 +12,9 @@
 .c-logo {
   height: calc(var(--spacing) * 7);
   padding: var(--spacing-lg);
+
+  @media screen and (min-width: 1024px) {
+    margin-bottom: calc(( 4 - var(--spacing-xl)));
+    /*not sure I understand this cal: 48 - 4 should equal 44px* the browser is showing 16px*/
+  }
 }

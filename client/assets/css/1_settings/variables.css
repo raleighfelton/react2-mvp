@@ -18,5 +18,6 @@
   --spacing: var(--font-size);
   --spacing-lg: var(--font-size-lg);
   --spacing-xl: var(--font-size-xl);
+  --spacing-xxl: var(--font-size-xxl);
   --theme-color-primary: var(--color-purple);
 }

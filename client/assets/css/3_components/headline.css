@@ -3,6 +3,7 @@
   margin-top: 0;
 
   @media screen and (min-width: 736px) {
+    margin-top: var(--spacing);
     width: 512px;
   }
 }

@@ -1,6 +1,6 @@
 .c-footer {
   margin-bottom: 40px;
-  margin-top: 40px;
+  margin-top: var(--spacing-xxl);
   text-align: center;
 
   &__link {
