@@ -17,7 +17,8 @@
 
   @media screen and (min-width: 1024px) {
     height: 512px;
-    margin: var(--spacing-lg) auto var(--spacing-xl);
+    margin: 0 auto var(--spacing-xl);
+    order: -3;
     width: 512px;
   }
 }
