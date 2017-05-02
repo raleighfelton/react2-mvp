@@ -1,0 +1,8 @@
+.c-headline {
+  margin-bottom: var(--spacing-xl);
+  margin-top: 0;
+
+  @media screen and (min-width: 736px) {
+    width: 512px;
+  }
+}

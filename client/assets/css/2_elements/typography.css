@@ -24,10 +24,6 @@ p {
   line-height: var(--font-size-lg);
 }
 
-a {
-  text-decoration: none;
-}
-
 span {
   color: var(--color-purple);
 }

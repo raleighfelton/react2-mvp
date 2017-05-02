@@ -10,6 +10,14 @@
 */
 
 .c-event-image {
-  margin: var(--spacing-lg) auto var(--spacing-xl);
-  text-align: center;
+  margin: var(--spacing-xl) auto var(--spacing-xl);
+  max-width: 512px;
+  width: 100%;
+  /*text-align: center;*/
+
+  @media screen and (min-width: 1024px) {
+    height: 512px;
+    margin: var(--spacing-lg) auto var(--spacing-xl);
+    width: 512px;
+  }
 }
