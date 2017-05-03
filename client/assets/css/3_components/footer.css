@@ -1,5 +1,17 @@
+/*
+  Footer
+
+  Markup:
+  <footer className="c-footer">
+    <a className="c-footer__link" href="#">Learn More About React2</a>
+    <p className="c-footer__cc">©Copyright {date.getFullYear()} React2</p>
+  </footer>
+
+  Styleguide: Components.Footer
+*/
+
 .c-footer {
-  margin-bottom: 40px;
+  margin-bottom: calc(var(--spacing) * 2.5);
   margin-top: var(--spacing-xxl);
   text-align: center;
 
@@ -8,7 +20,7 @@
   }
 
   &__cc {
+    font-family: var(--font-family-bold);
     font-size: var(--font-size-sm);
-    font-weight: var(--font-family-bold);
   }
 }
