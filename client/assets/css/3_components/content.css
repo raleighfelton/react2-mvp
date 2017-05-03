@@ -4,7 +4,7 @@
   }
 
   &__p {
-    margin-bottom: 40px;
+    margin-bottom: calc(var(--spacing) * 2.5);
     max-width: 392px;
   }
 }

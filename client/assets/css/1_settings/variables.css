@@ -9,15 +9,15 @@
   --font-family-regular: "Gilroy-Regular", "Helvetica Neue", Arial, sans-serif;
   --font-size-sm: 12px;
   --font-size: 16px;
-  --font-size-lg: 24px;
-  --font-size-xl: 48px;
-  --font-size-xxl: 80px;
-  --font-size-xxxl: 120px;
+  --font-size-lg: 24px; /* calc(--font-size * 1.5) */
+  --font-size-xl: 48px; /* calc(--font-size * 3 )*/
+  --font-size-xxl: 80px; /* calc(--font-size * 5 )*/
+  --font-size-xxxl: 120px; /* calc(--font-size * 7.5) */
   --radius: 10px;
   --spacing-sm: var(--font-size-sm);
   --spacing: var(--font-size);
   --spacing-lg: var(--font-size-lg);
   --spacing-xl: var(--font-size-xl);
-  --spacing-xxl: var(--font-size-xxl);
+  --spacing-xxl: var(--font-size-xxl);   /*calc(var(--spacing) * 5);*/
   --theme-color-primary: var(--color-purple);
 }
