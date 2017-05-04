@@ -1,6 +1,4 @@
 .c-event-content {
-  display: flex;
-  flex-direction: column;
   margin-top: calc(var(--spacing) * 3.75);
   max-width: 756px;
   text-align: center;
