@@ -28,16 +28,49 @@ describe('socket', function() {
       done();
     });
 
-    it('passes', function(done) {
-      const expectedReaction = '123';
+    afterEach(function(done) {
+      client1.disconnect();
+      client2.disconnect();
+      done();
+    });
 
-      client1.on('connect', function(data) {
-        client1.emit('reaction', expectedReaction);
-        client2.on('reaction', function(data) {
-          expect(data).to.eq(expectedReaction);
-          done();
-        });
-      });
+    it('updates that users reaction', function(done) {
+      const expectedReaction = 100;
+      user = new User();
+      user.save()
+        .then((user) => {
+          client1.on('connect', function(data) {
+            client1.emit('reaction', { id: user._id, value: expectedReaction });
+            client1.on('connected users', function() {
+              User.find({ _id: user._id })
+                .then(([ user ]) => {
+                  expect(user.reaction).to.eq(expectedReaction);
+                  done();
+                }).catch(done);
+            });
+          })
+        })
+        .catch(done);
+    });
+
+    it('broadcasts connected users', function(done) {
+      const expectedReaction = 99;
+
+      (new User()).save()
+        .then(function(user) {
+          client1.on('connect', function(data) {
+            client1.emit('reaction', { id: user._id, value: expectedReaction });
+            client2.on('connected users', function(connectedUsers) {
+              User.find({ connected: true })
+                .then((users) => {
+                  const userIds = users.map((u) => { return u._id.toString() });
+                  const connectedUsersIds = connectedUsers.map((u) => { return u._id.toString() });
+                  expect(connectedUsersIds).to.deep.eq(userIds);
+                  done();
+                })
+            });
+          });
+        }).catch(done);
     });
   });
 

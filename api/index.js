@@ -33,7 +33,21 @@ io.on('connection', (socket) => {
   });
 
   socket.on('reaction', function(reaction) {
-    io.emit('reaction', reaction);
+    User.find({ _id: reaction.id })
+      .then(([ user ]) => {
+        user.reaction = reaction.value;
+        user.connected = true;
+        user.save()
+          .then((user) => {
+            User.find({ connected: true })
+              .then((users) => {
+                io.emit('connected users', users); // Broadcast all newly-connected users
+              });
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 });
 

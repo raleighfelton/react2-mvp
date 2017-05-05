@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  reactions: {
-    type: Array,
-    default: []
+  reaction: {
+    type: Number,
+    default: 50
   },
   connected: {
     type: Boolean,
