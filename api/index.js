@@ -10,7 +10,19 @@ app.get('/api', (req, res) => {
   res.send({ sah: 'doo' });
 });
 
+function broadcastConnectedUsers() {
+  User.find({ connected: true })
+    .then((users) => {
+      io.emit('connected users', users); // Broadcast all newly-connected users
+    });
+}
+
 io.on('connection', (socket) => {
+  // Creates a new user
+  // emits:
+  //  - new user (user object)
+  // broadcasts:
+  //  - connected users (array of all connected users including new user)
   socket.on('new user', function() {
     user = new User();
     user.avatar = faker.internet.avatar();
@@ -22,16 +34,17 @@ io.on('connection', (socket) => {
           .then((count) => {
             io.emit('users', count); // Broadcast user count
           });
-        User.find({ connected: true })
-          .then((users) => {
-            io.emit('connected users', users); // Broadcast all newly-connected users
-          });
+          broadcastConnectedUsers() // Broadcast all newly-connected users
       })
       .catch((err) => {
         console.log(`An Error Occured: ${err}`)
       });
   });
 
+  // Update reaction of user
+  // params: { id: '<user_id>', value: <integer 1-100> }
+  // broadcasts:
+  //  - connected users (array of all connected users)
   socket.on('reaction', function(reaction) {
     User.find({ _id: reaction.id })
       .then(([ user ]) => {
@@ -39,10 +52,7 @@ io.on('connection', (socket) => {
         user.connected = true;
         user.save()
           .then((user) => {
-            User.find({ connected: true })
-              .then((users) => {
-                io.emit('connected users', users); // Broadcast all newly-connected users
-              });
+            broadcastConnectedUsers() // Broadcast all newly-connected users
           });
       })
       .catch((err) => {
