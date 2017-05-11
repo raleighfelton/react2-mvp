@@ -15,16 +15,21 @@
 @import "2_elements/typography";
 
 /* 3_components */
+@import "3_components/back-header";
+@import "3_components/button-share";
 @import "3_components/buttons";
 @import "3_components/content";
+@import "3_components/event-action";
 @import "3_components/event-content";
 @import "3_components/event-image";
+@import "3_components/event-status";
 @import "3_components/footer";
 @import "3_components/headline";
 @import "3_components/splash";
 @import "3_components/links";
 @import "3_components/logo";
 @import "3_components/profile";
+@import "3_components/profile-stats";
 @import "3_components/rating";
 @import "3_components/scale";
 @import "3_components/stats";

@@ -38,10 +38,14 @@
 */
 
 .c-stat {
+  /*background: coral;*/
   padding: var(--spacing);
 
   &:last-child {
+    /*margin: 24px 0;
     padding-right: 0;
+    text-align: center;
+    width: 100vw;*/
   }
 
   &__icon {

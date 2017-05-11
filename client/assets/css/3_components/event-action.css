@@ -1,0 +1,11 @@
+.c-event__action {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  text-align: center;
+
+  @media screen and (min-width: 736px) {
+    margin-top: 0;
+    width: 188px;
+  }
+}

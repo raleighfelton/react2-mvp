@@ -1,5 +1,3 @@
-
-
 .l-content {
   flex-basis: 20%;
   height: calc(100% - (var(--spacing) * 8));
