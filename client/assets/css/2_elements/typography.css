@@ -1,6 +1,7 @@
 h1, h2, h3, h4, h5, h6, a, button {
   color: var(--color-white);
   font-family: var(--font-family-bold);
+  margin: 0;
 }
 
 h1 {
@@ -15,6 +16,14 @@ h1 {
 
 h2 {
   font-size: var(--font-size-xxl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+h6 {
+  font-size: var(--font-size);
 }
 
 p {
