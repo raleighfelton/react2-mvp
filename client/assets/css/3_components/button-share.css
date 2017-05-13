@@ -4,7 +4,7 @@
   width: 90%;
 
   @media screen and (min-width: 736px) {
-    height: 42px;
+    height: calc(var(--font-size) * 2.65);
     margin: 0 auto;
     position: relative;
   }

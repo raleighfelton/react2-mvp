@@ -10,7 +10,7 @@
 */
 
 .c-profile {
-  height: 48px;
+  height: var(--spacing-xl);
   margin: 0;
   opacity: 1;
 
@@ -20,7 +20,7 @@
 
   &__icon {
     border-radius: 50%;
-    height: 48px;
-    width: 48px;
+    height: var(--spacing-xl);
+    width: var(--spacing-xl);
   }
 }
