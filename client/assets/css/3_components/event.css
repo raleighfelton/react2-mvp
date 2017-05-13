@@ -1,0 +1,33 @@
+.c-event {
+  &__action {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--font-size-lg);
+    text-align: center;
+
+    @media screen and (min-width: 736px) {
+      margin-top: 0;
+      width: calc(var(--spacing) * 11.75); /*188px*/
+    }
+  }
+
+  &__title {
+    font-size: calc(var(--font-size) * 3);
+
+    @media screen and (min-width: 736px) {
+      font-size: var(--font-size-xxl);
+    }
+  }
+
+  &__status {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--spacing);
+
+    @media screen and (min-width: 736px) {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: calc(var(--spacing) * 7);
+    }
+  }
+}

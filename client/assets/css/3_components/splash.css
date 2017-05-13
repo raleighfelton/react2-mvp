@@ -7,6 +7,6 @@
 }
 
 .c-splash__footer {
-  margin-top: 96px;
+  margin-top: calc(var(--spacing) * 6);
   text-align: center;
 }

@@ -2,20 +2,19 @@
   /*background: red;*/
   align-items: center;
   display: flex;
-  height: 84px;
-  /*justify-content: center; use for table layout*/ 
+  height: calc(var(--spacing-xxl));
   text-transform: uppercase;
 
   &__avatar {
     align-self: center;
     border-radius: 100%;
-    height: 56px;
+    height: calc(var(--spacing) * 3.5);
     margin-left: var(--spacing);
     margin-right: var(--spacing);
     width: 56px;
   }
 
   &__percent {
-    margin: 8px;
+    margin: calc(var(--spacing) / 2); /*8px*/
   }
 }
