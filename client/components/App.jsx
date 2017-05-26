@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
-import faker from 'faker';
 import client from 'socket.io-client';
 
 const socket = client('http://localhost:3000');
@@ -14,35 +13,40 @@ class App extends Component {
     super(props);
 
     this.state = {
-      avatar: faker.internet.avatar(),
-      userID: faker.internet.userName(),
-      ratings: [],
-      users: []
+      connected: false,
+      userRatings: []
     };
 
     this.addReaction = this.addReaction.bind(this);
+    this.createUser = this.createUser.bind(this);
     this.update = this.update.bind(this);
 
-    socket.on('reaction', this.update);
+    socket.emit('new user');
+    socket.on('new user', this.createUser);
+    socket.on('connected users', this.update);
   }
 
   addReaction(reaction) {
     return () => {
-      socket.emit('reaction', { userID: this.state.userID, reaction });
+      socket.emit('reaction', { id: this.state.id, value: reaction });
+      this.setState(() => {
+        return { reaction };
+      });
     };
   }
 
-  update(rating) {
-    this.setState((oldState) => {
-      const newState = {};
+  createUser(user) {
+    this.setState({
+      avatar: user.avatar,
+      connected: true,
+      id: user._id,
+      reaction: user.reaction
+    });
+  }
 
-      if (rating.userID === oldState.userID) {
-        newState.myRating = rating.reaction;
-      }
-
-      newState.ratings = oldState.ratings.concat(rating);
-
-      return newState;
+  update(userRatings) {
+    this.setState(() => {
+      return { userRatings };
     });
   }
 

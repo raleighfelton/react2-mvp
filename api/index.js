@@ -1,7 +1,6 @@
-const path = require('path');
 const faker = require('faker');
 const app = require('./helpers/express');
-const http = require('http').Server(app);
+const http = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(http);
 const User = require('./models/user');
 require('./config/database');
@@ -24,20 +23,20 @@ io.on('connection', (socket) => {
   // broadcasts:
   //  - connected users (array of all connected users including new user)
   socket.on('new user', function() {
-    user = new User();
+    const user = new User();
     user.avatar = faker.internet.avatar();
     user.connected = true;
     user.save()
-      .then((user) => {
-        socket.emit('new user', user); // Return new user
+      .then((saved) => {
+        socket.emit('new user', saved); // Return new user
         User.count({})
           .then((count) => {
             io.emit('users', count); // Broadcast user count
           });
-          broadcastConnectedUsers() // Broadcast all newly-connected users
+        broadcastConnectedUsers(); // Broadcast all newly-connected users
       })
       .catch((err) => {
-        console.log(`An Error Occured: ${err}`)
+        console.warn(`An Error Occured: ${err}`); // eslint-disable-line no-console
       });
   });
 
@@ -46,23 +45,24 @@ io.on('connection', (socket) => {
   // broadcasts:
   //  - connected users (array of all connected users)
   socket.on('reaction', function(reaction) {
+    console.log(reaction); // eslint-disable-line no-console
     User.find({ _id: reaction.id })
-      .then(([ user ]) => {
+      .then(([user]) => {
         user.reaction = reaction.value;
         user.connected = true;
         user.save()
-          .then((user) => {
-            broadcastConnectedUsers() // Broadcast all newly-connected users
+          .then(() => {
+            broadcastConnectedUsers(); // Broadcast all newly-connected users
           });
       })
       .catch((err) => {
-        console.log(err);
+        console.warn(err); // eslint-disable-line no-console
       });
   });
 });
 
-const port = (process.env.NODE_ENV === 'production')? process.env.PORT : 3000;
+const port = (process.env.NODE_ENV === 'production') ? process.env.PORT : 3000;
 
 http.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}`); // eslint-disable-line no-console
 });

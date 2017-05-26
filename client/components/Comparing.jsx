@@ -55,4 +55,6 @@ function Comparing({ avatar }) {
   );
 }
 
+Comparing.propTypes = propTypes;
+
 export default Comparing;

@@ -3,10 +3,10 @@ const io = require('socket.io-client');
 const User = require('./models/user');
 require('./index.js');
 const mongoose = require('./config/database');
-const Cleaner = require('database-cleaner')
-const dbCleaner = new Cleaner('mongodb')
+const Cleaner = require('database-cleaner');
+const dbCleaner = new Cleaner('mongodb');
 
-const options ={
+const options = {
   transports: ['websocket'],
   'force new connection': true
 };
@@ -14,8 +14,8 @@ const options ={
 describe('socket', function() {
   afterEach(function(done) {
     dbCleaner.clean(mongoose.connection.db, () => {
-      done()
-    })
+      done();
+    });
   });
 
   describe('reaction', function() {
@@ -36,19 +36,19 @@ describe('socket', function() {
 
     it('updates that users reaction', function(done) {
       const expectedReaction = 100;
-      user = new User();
-      user.save()
-        .then((user) => {
-          client1.on('connect', function(data) {
-            client1.emit('reaction', { id: user._id, value: expectedReaction });
+      const newUser = new User();
+      newUser.save()
+        .then((savedUser) => {
+          client1.on('connect', function() {
+            client1.emit('reaction', { id: savedUser._id, value: expectedReaction });
             client1.on('connected users', function() {
-              User.find({ _id: user._id })
-                .then(([ user ]) => {
+              User.find({ _id: savedUser._id })
+                .then(([user]) => {
                   expect(user.reaction).to.eq(expectedReaction);
                   done();
                 }).catch(done);
             });
-          })
+          });
         })
         .catch(done);
     });
@@ -58,19 +58,20 @@ describe('socket', function() {
 
       (new User()).save()
         .then(function(user) {
-          client1.on('connect', function(data) {
+          client1.on('connect', function() {
             client1.emit('reaction', { id: user._id, value: expectedReaction });
             client2.on('connected users', function(connectedUsers) {
               User.find({ connected: true })
                 .then((users) => {
-                  const userIds = users.map((u) => { return u._id.toString() });
-                  const connectedUsersIds = connectedUsers.map((u) => { return u._id.toString() });
+                  const userIds = users.map((u) => { return u._id.toString(); });
+                  const connectedUsersIds = connectedUsers.map((u) => { return u._id.toString(); });
                   expect(connectedUsersIds).to.deep.eq(userIds);
                   done();
-                })
+                });
             });
           });
-        }).catch(done);
+        })
+        .catch(done);
     });
   });
 
@@ -95,13 +96,13 @@ describe('socket', function() {
         client1.emit('new user');
         client1.on('new user', function(emittedUser) {
           User.findOne().sort('-created_at')
-            .then((storredUser) => {
-              expect(emittedUser._id).to.not.eq(undefined);
+            .then(() => {
+              expect(emittedUser._id).to.not.be.undefined; // not recommended by mocha docs, should change test to something else
               expect(emittedUser.connected).to.eq(true);
-              expect(emittedUser.avatar).to.not.eq(undefined);
+              expect(emittedUser.avatar).to.not.be.undefined; // not recommended by mocha docs, should change test to something else
               done();
-            }).
-            catch(done)
+            })
+            .catch(done);
         });
       });
     });
@@ -115,9 +116,9 @@ describe('socket', function() {
         client2.on('connected users', function(connectedUsers) {
           User.find({})
             .then((users) => {
-              userIds = users.map((user) => { return user._id.toString() });
+              const userIds = users.map((user) => { return user._id.toString(); });
               connectedUsers.map((user) => {
-                expect(userIds).to.include(user._id);
+                return expect(userIds).to.include(user._id);
               });
               done();
             })

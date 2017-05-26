@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ProfileImage from './ProfileImage';
 
 const propTypes = {
-  avatar: PropTypes.string.isRequired
+  avatar: PropTypes.string
 };
 
 function Header({ avatar }) {

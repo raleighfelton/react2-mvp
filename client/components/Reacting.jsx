@@ -7,20 +7,19 @@ import Footer from './Footer';
 import Scale from './Scale';
 
 const propTypes = {
-  addReaction: PropTypes.func.isRequired,
-  avatar: PropTypes.string.isRequired,
-  myRating: PropTypes.number,
-  ratings: PropTypes.array.isRequired
+  avatar: PropTypes.string
 };
 
-function Reacting({ addReaction, avatar, myRating, ratings }) {
+function Reacting(props) {
+  const { avatar } = props;
+
   return (
     <div className="body">
       <Header avatar={avatar} />
       <div className="l-main">
         <h1 className="c-title">#SuperBowl51</h1>
         <div className="l-content">
-          <Scale addReaction={addReaction} avatar={avatar} myRating={myRating} ratings={ratings} />
+          <Scale {...props} />
           <Link
             className="c-button c-button--tall c-button--hide-mobile c-button--blue"
             to="/Compare"

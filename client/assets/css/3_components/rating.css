@@ -11,11 +11,18 @@
 
 .c-rating {
   position: absolute;
-  right: -var(--spacing-xl);
 
   &__avatar {
     border-radius: 50%;
     height: var(--spacing-xl);
     width: var(--spacing-xl);
+  }
+
+  &--primary {
+    right: -var(--spacing-xl);
+  }
+
+  &--secondary {
+    left: -var(--spacing-xl);
   }
 }
