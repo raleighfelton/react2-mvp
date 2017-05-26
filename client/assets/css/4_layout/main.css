@@ -1,5 +1,4 @@
 .l-main {
-  /*background: blue;*/
   display: flex;
   height: calc(100% - (var(--spacing) * 2));
   justify-content: center;
