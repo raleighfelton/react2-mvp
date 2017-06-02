@@ -11,6 +11,7 @@
     "watch-api": "nodemon --watch api api/index.js",
     "build": "NODE_ENV=production webpack --progress --colors",
     "start": "yarn run watch-client & yarn run watch-api",
+    "test": "NODE_ENV=test mocha --compilers jsx:babel-register --opts 'support/mocha.opts' api/**/*.spec.js",
     "heroku-postbuild": "yarn run build"
   },
   "engines": {
