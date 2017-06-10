@@ -62,6 +62,14 @@ const h1 = {
   fill: vars.colorWhite
 };
 
+const h1Mobile = {
+  fontFamily: vars.fontFamilyBold,
+  fontSize: vars.fontSizeMD,
+  lineSpacing: vars.fontSizeMD,
+  letterSpacing: -0.5,
+  fill: vars.colorWhite
+};
+
 const h2 = {
   fontFamily: vars.fontFamilyBold,
   fontSize: vars.fontSizeXL,
@@ -115,6 +123,7 @@ export default {
   button,
   darkButton,
   h1,
+  h1Mobile,
   h2,
   h3,
   label,

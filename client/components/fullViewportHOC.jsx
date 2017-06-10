@@ -18,7 +18,7 @@ export default function fullViewportHOC(WrappedComponent) {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { width: 320, height: 480 }; // mobile first, amirite?
+      this.state = { width: 320, height: 480, isMobile: true }; // mobile first, amirite?
       this.preventDefault = this.preventDefault.bind(this);
       this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
@@ -43,9 +43,11 @@ export default function fullViewportHOC(WrappedComponent) {
     }
 
     updateWindowDimensions() {
+      console.log(window.innerWidth);
       this.setState({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
+        isMobile: !!(window.innerWidth < 960)
       });
     }
 
@@ -54,6 +56,7 @@ export default function fullViewportHOC(WrappedComponent) {
         <WrappedComponent
           height={this.state.height}
           width={this.state.width}
+          isMobile={this.state.isMobile}
           {...this.props}
         />
       );
