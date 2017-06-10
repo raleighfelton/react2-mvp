@@ -1,0 +1,9 @@
+.l-full-screen-flex {
+  align-items: stretch;
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
+  flex-direction: column;
+  width: 100%;
+}

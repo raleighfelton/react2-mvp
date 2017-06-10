@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Measure from 'react-measure';
+import { withContentRect } from 'react-measure';
 import * as scale from 'd3-scale';
 
 const propTypes = {
@@ -25,77 +25,76 @@ const increments = [
   { rating: 1, label: '-' }
 ];
 
+let i = 0;
+
 class Scale extends Component {
   constructor(props) {
     super(props);
-
-    this.adjustDimensions = this.adjustDimensions.bind(this);
-
-    this.state = {
-      dimensions: {
-        height: -1,
-        width: -1
-      },
-      yScale: scale
-        .scaleLinear()
-        .domain([1, 100])
-        .range([0, 0])
-    };
   }
 
-  adjustDimensions(dimensions) {
-    this.setState({
-      dimensions,
-      yScale: scale
-        .scaleLinear()
-        .domain([1, 100])
-        .range([dimensions.height, 0])
-    });
+  componentDidUpdate() {
+    console.log(`i: ${i}`);
+    i++;
   }
 
   render() {
-    const { addReaction, id, userRatings } = this.props;
-    console.log(userRatings); // eslint-disable-line no-console
+    const { addReaction, contentRect, id, measure, measureRef, userRatings } = this.props;
+    const { height, width } = contentRect.bounds;
+    console.log(`h: ${height}`);
+    console.log(`w: ${width}`);
 
+    const yScale = scale
+      .scaleLinear()
+      .domain([1, 100])
+      .range([height, 0]);
+
+    const xScale = scale
+      .scaleLinear()
+      .domain([0, 100])
+      .range([0, width]);
+
+    // console.log(userRatings); // eslint-disable-line no-console
+    // console.log(contentRect);
     return (
-      <Measure onMeasure={this.adjustDimensions} style={{ position: 'relative' }}>
-        <div className="c-scale">
-          {increments.map((increment, iteration) => {
-            const userList = this.props.userRatings.filter((user) => user.reaction === increment.rating);
+      <div
+        className="c-scale"
+        ref={measureRef}
+      >
+        {height && width && increments.map((increment, iteration) => {
+          const userList = this.props.userRatings.filter((user) => user.reaction === increment.rating);
 
-            return (
-              <div
-                key={iteration}
-                className="c-scale__tick-container"
-                onClick={addReaction(increment.rating)}
-              >
-                {increment.label ?
-                  <div className="c-scale__tick c-scale__tick--labeled">
-                    <div className="c-scale__label">{increment.label}</div>
-                  </div> :
-                  <div className="c-scale__tick" />}
-                {userList.map((user) => {
-                  const ratingClasses = classNames(
-                    { 'c-rating': true },
-                    { 'c-rating--primary': (id === user._id) },
-                    { 'c-rating--secondary': (id !== user._id) }
-                  );
+          return (
+            <div
+              key={iteration}
+              className="c-scale__tick-container"
+              onClick={addReaction(increment.rating)}
+            >
+              {increment.label ?
+                <div className="c-scale__tick c-scale__tick--labeled">
+                  <div className="c-scale__label">{increment.label}</div>
+                </div> :
+                <div className="c-scale__tick" />}
+              {userList.map((user) => {
+                const ratingClasses = classNames(
+                  { 'c-rating': true },
+                  { 'c-rating--primary': (id === user._id) },
+                  { 'c-rating--secondary': (id !== user._id) }
+                );
 
-                  return (
-                    <div key={user._id} className={ratingClasses}>
-                      <img className="c-rating__avatar" src={user.avatar} alt="rating avatar" />
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </Measure>
+                return (
+                  <div key={user._id} className={ratingClasses}>
+                    <img className="c-rating__avatar" src={user.avatar} alt="rating avatar" />
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
     );
   }
 }
 
 Scale.propTypes = propTypes;
 
-export default Scale;
+export default withContentRect('bounds')(Scale);

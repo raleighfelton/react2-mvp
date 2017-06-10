@@ -4,4 +4,4 @@ import App from './components/App';
 
 import './assets/css/styles.css';
 
-render(<App />, document.getElementById('root'));
+render(<App />, document.querySelector('#root'));
