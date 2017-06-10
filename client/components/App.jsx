@@ -14,6 +14,7 @@ class App extends Component {
 
     this.state = {
       connected: false,
+      myRatings: [],
       userRatings: []
     };
 
@@ -27,12 +28,13 @@ class App extends Component {
   }
 
   addReaction(reaction) {
-    return () => {
+    this.setState((oldState) => {
       socket.emit('reaction', { id: this.state.id, value: reaction });
-      this.setState(() => {
-        return { reaction };
-      });
-    };
+      return {
+        reaction,
+        myRatings: oldState.myRatings.concat(reaction)
+      };
+    });
   }
 
   createUser(user) {

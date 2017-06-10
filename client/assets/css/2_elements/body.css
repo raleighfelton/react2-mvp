@@ -15,4 +15,5 @@ body {
 .body {
   height: 100%;
   position: relative;
+  -webkit-overflow-scrolling: touch;
 }

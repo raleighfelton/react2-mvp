@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   reaction: {
     type: Number,
-    default: 50
+    default: 0
   },
   connected: {
     type: Boolean,
