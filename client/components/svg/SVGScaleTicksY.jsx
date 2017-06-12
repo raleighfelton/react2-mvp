@@ -15,9 +15,10 @@ function SVGScaleTicksY({ yTicks, yScale }) {
   const labelTicksRightX2 = scaleTicksWidth;
   const labelTicksRightX1 = labelTicksRightX2 - labelWidth;
   const effedUpOffset = 2;
+  const translation = margin + effedUpOffset;
 
   return (
-    <g id="scale-ticks" transform={`translate(${margin + effedUpOffset}, 0)`}>
+    <g id="scale-ticks" transform={`translate(${translation}, 0)`}>
       {yTicks.map((tick) => {
         const y = yScale(tick);
         const tickLabel = tickLabelCheck(tick);
