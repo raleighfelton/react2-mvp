@@ -1,10 +1,13 @@
 const { expect } = require('chai');
 const io = require('socket.io-client');
-const User = require('./models/user');
-require('./index.js');
-const mongoose = require('./config/database');
+const User = require('../models/user');
+const Reaction = require('../models/reaction');
+require('../index.js');
+const mongoose = require('../config/database');
 const Cleaner = require('database-cleaner');
 const dbCleaner = new Cleaner('mongodb');
+const moment = require('moment');
+const _ = require('lodash');
 
 const options = {
   transports: ['websocket'],
@@ -34,17 +37,28 @@ describe('socket', function() {
       done();
     });
 
-    it('updates that users reaction', function(done) {
+    it('updates that users reactions', function(done) {
       const expectedReaction = 100;
       const newUser = new User();
+      const expectedReactionsCount = 5;
       newUser.save()
         .then((savedUser) => {
           client1.on('connect', function() {
-            client1.emit('reaction', { id: savedUser._id, value: expectedReaction });
+            _.times(expectedReactionsCount, (index) => {
+              client1.emit(
+                'reaction',
+                {
+                  id: savedUser._id,
+                  value: expectedReaction,
+                  createdAt: moment().subtract(index, 'd').toISOString()
+                }
+              );
+            });
             client1.on('connected users', function() {
               User.find({ _id: savedUser._id })
                 .then(([user]) => {
-                  expect(user.reaction).to.eq(expectedReaction);
+                  expect(user.reactions.length).to.eq(expectedReactionsCount);
+                  expect(user.latestReaction()).to.eq(expectedReaction);
                   done();
                 }).catch(done);
             });

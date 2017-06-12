@@ -1,7 +1,9 @@
 const User = require('../models/user');
+const Reaction = require('../models/reaction');
 const faker = require('faker');
+const moment = require('moment');
 
-function socketController(socket, io) {
+function SocketController(socket, io) {
   function broadcastConnectedUsers() {
     User.find({ connected: true })
       .then((users) => {
@@ -39,10 +41,14 @@ function socketController(socket, io) {
   socket.on('reaction', function(reaction) {
     User.find({ _id: reaction.id })
       .then(([user]) => {
-        user.reaction = reaction.value;
+        user.reactions = new Reaction({
+          value: reaction.value,
+          createdAt: reaction.createdAt || moment()
+        });
         user.connected = true;
         user.save()
-          .then(() => {
+          .then((u) => {
+            console.log(u.reactions);
             broadcastConnectedUsers(); // Broadcast all newly-connected users
           });
       })
@@ -52,4 +58,4 @@ function socketController(socket, io) {
   });
 }
 
-module.exports = { socketController };
+module.exports = { SocketController };
