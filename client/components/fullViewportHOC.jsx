@@ -30,12 +30,12 @@ export default function fullViewportHOC(WrappedComponent, WrappedMobileComponent
     componentDidMount() {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
-      document.addEventListener("touchmove", this.preventDefault, true);
+      document.addEventListener('touchmove', this.preventDefault, true);
     }
 
     componentWillUnmount() {
       window.removeEventListener('resize', this.updateWindowDimensions);
-      document.removeEventListener("touchmove", this.preventDefault, true);
+      document.removeEventListener('touchmove', this.preventDefault, true);
     }
 
     preventDefault(e) {
@@ -63,7 +63,7 @@ export default function fullViewportHOC(WrappedComponent, WrappedMobileComponent
             isMobile={this.state.isMobile}
             {...this.props}
           />
-        )
+        );
       }
 
       return (

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as scale from 'd3-scale';
 
 import sv from '../../utils/styleVariables';
-import fullViewportHOC from '../fullViewportHOC';
 
 import SVGButton from '../svg/SVGButton';
 import SVGGraphTicksY from '../svg/SVGGraphTicksY';
@@ -14,9 +12,13 @@ import SVGScaleTicksY from '../svg/SVGScaleTicksY';
 const propTypes = {
   addReaction: PropTypes.func.isRequired,
   avatar: PropTypes.string,
+  height: PropTypes.number,
   id: PropTypes.string,
+  isMobile: PropTypes.bool,
+  myRatings: PropTypes.array,
   reaction: PropTypes.number,
-  userRatings: PropTypes.array.isRequired
+  userRatings: PropTypes.array.isRequired,
+  width: PropTypes.number
 };
 
 function Desktop(props) {
@@ -24,14 +26,12 @@ function Desktop(props) {
 
   const h1Baseline = height / 5 < sv.vars.h1Baseline ? Math.abs(height / 5) : sv.vars.h1Baseline;
   const headingLeft = width / 8;
-  const headingRight = width - sv.vars.spacingMD;
   const shareGroupRight = width - (headingLeft + sv.vars.buttonWidth);
   const graphLineLeft = headingLeft - sv.vars.spacingMD;
   const graphLineWidth = width - (graphLineLeft * 2);
   const graphLineTop = h1Baseline + (sv.vars.spacingXL * 2.5);
   const graphLineHeight = height - graphLineTop - sv.vars.spacingXXL;
-  const startTime = new Date(2000, 0, 1);
-  const endTime = new Date(2000, 0, 2);
+
   const positiveRatings = Math.floor(myRatings.filter((r) => r > 0).length / myRatings.length * 100);
   const negativeRatings = Math.floor(myRatings.filter((r) => r < 0).length / myRatings.length * 100);
 
@@ -42,10 +42,13 @@ function Desktop(props) {
 
   const yTicks = [-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1];
 
-  const xScale = scale
-    .scaleTime()
-    .domain([startTime, endTime])
-    .range([0, graphLineWidth]);
+  // const startTime = new Date(2000, 0, 1);
+  // const endTime = new Date(2000, 0, 2);
+  //
+  // const xScale = scale
+  //   .scaleTime()
+  //   .domain([startTime, endTime])
+  //   .range([0, graphLineWidth]);
 
   return (
     <svg
@@ -157,7 +160,7 @@ function Desktop(props) {
           </g>
           <g id="friends" transform={`translate(${sv.vars.buttonWidth / 2 + 16}, ${44 + 8})`}>
             <text style={{ ...sv.label, fill: sv.vars.colorBlue }} x={`${sv.vars.spacingMD * 2.5}`} y="21">{userRatings.length}</text>
-            <g fill={sv.vars.colorBlue} transform={"translate(0, 3)"}>
+            <g fill={sv.vars.colorBlue} transform="translate(0, 3)">
               <path d="M12.7058824,15.625 C15.9398427,15.625 19.3062896,17.8928414 21.6874035,21.875 L24,21.875 C21.2209672,16.5385721 16.8984449,13.5416667 12.7058824,13.5416667 C7.11951136,13.5416667 2.77212343,16.5782565 0,21.875 L2.31611558,21.875 C4.79114231,17.7690954 8.32422249,15.625 12.7058824,15.625 Z" />
               <path d="M12,13.5416667 C14.209139,13.5416667 16,11.6761865 16,9.375 C16,7.07381354 14.209139,5.20833333 12,5.20833333 C9.790861,5.20833333 8,7.07381354 8,9.375 C8,11.6761865 9.790861,13.5416667 12,13.5416667 Z M12,15.625 C8.6862915,15.625 6,12.8267797 6,9.375 C6,5.92322031 8.6862915,3.125 12,3.125 C15.3137085,3.125 18,5.92322031 18,9.375 C18,12.8267797 15.3137085,15.625 12,15.625 Z" />
             </g>

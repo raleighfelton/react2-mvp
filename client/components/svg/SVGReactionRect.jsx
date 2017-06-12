@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import sv from '../../utils/styleVariables';
 import { normalizeRating } from '../../utils/graphHelpers';
+
+const propTypes = {
+  addReaction: PropTypes.func,
+  graphLineHeight: PropTypes.number,
+  graphLineTop: PropTypes.number,
+  yScale: PropTypes.func
+};
 
 class SVGReactionRect extends Component {
   constructor(props) {
@@ -11,7 +18,7 @@ class SVGReactionRect extends Component {
       isDown: false,
       isMoving: false,
       downPositionY: 0,
-      moveDeltaY: 0,
+      moveDeltaY: 0
     };
     this.onDown = this.onDown.bind(this);
     this.onUp = this.onUp.bind(this);
@@ -22,7 +29,6 @@ class SVGReactionRect extends Component {
   }
 
   componentDidMount() {
-    const node = findDOMNode(this);
     // Mouse Events
     document.addEventListener('mousemove', this.onMove);
     document.addEventListener('mouseup', this.onUp);
@@ -32,7 +38,6 @@ class SVGReactionRect extends Component {
   }
 
   componentWillUnmount() {
-    const node = findDOMNode(this);
     // Mouse Events
     document.removeEventListener('mousemove', this.onMove);
     document.removeEventListener('mouseup', this.onUp);
@@ -46,9 +51,9 @@ class SVGReactionRect extends Component {
     this.setPosition(pt.clientY);
   }
 
-  onUp(e) {
+  onUp() {
     if (this.state.isDown) {
-      this.setState({ isDown: false, isMoving: false, });
+      this.setState({ isDown: false, isMoving: false });
     }
   }
 
@@ -101,5 +106,7 @@ class SVGReactionRect extends Component {
     );
   }
 }
+
+SVGReactionRect.propTypes = propTypes;
 
 export default SVGReactionRect;

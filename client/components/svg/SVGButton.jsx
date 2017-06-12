@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import sv from '../../utils/styleVariables';
+
+const propTypes = {
+  label: PropTypes.string,
+  to: PropTypes.string,
+  transform: PropTypes.string,
+  isSmall: PropTypes.bool,
+  noFill: PropTypes.bool
+};
 
 class SVGButton extends Component {
   constructor(props) {
@@ -19,7 +28,7 @@ class SVGButton extends Component {
           fill: isHovering ? sv.vars.buttonFillHover : sv.vars.buttonFill
         }
       });
-    }
+    };
   }
 
   render() {
@@ -56,5 +65,7 @@ class SVGButton extends Component {
     );
   }
 }
+
+SVGButton.propTypes = propTypes;
 
 export default SVGButton;

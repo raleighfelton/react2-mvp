@@ -1,6 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import sv from '../../utils/styleVariables';
 import { tickLabelCheck } from '../../utils/graphHelpers';
+
+const propTypes = {
+  graphLineWidth: PropTypes.number,
+  yScale: PropTypes.func,
+  yTicks: PropTypes.array
+};
 
 function SVGGraphTicksY({ graphLineWidth, yTicks, yScale }) {
   return (
@@ -29,5 +36,7 @@ function SVGGraphTicksY({ graphLineWidth, yTicks, yScale }) {
     </g>
   );
 }
+
+SVGGraphTicksY.propTypes = propTypes;
 
 export default SVGGraphTicksY;

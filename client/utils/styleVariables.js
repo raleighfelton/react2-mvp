@@ -10,17 +10,17 @@ const vars = {
   fontFamilyRegular: '"Gilroy-Regular", "Helvetica Neue", Arial, sans-serif',
   fontSizeSM: 12,
   fontSizeMD: 16,
-  fontSizeLG: 24, /* calc(var(font-size )* 1.5) */
-  fontSizeXL: 48, /* calc(var(font-size) * 3 )*/
-  fontSizeXXL: 80, /* calc(font-size * 5 )*/
-  fontSizeXXXL: 120, /* calc(font-size * 7.5) */
+  fontSizeLG: 24, // calc(var(font-size )* 1.5)
+  fontSizeXL: 48, // calc(var(font-size) * 3 )
+  fontSizeXXL: 80, // calc(font-size * 5 )
+  fontSizeXXXL: 120, // calc(font-size * 7.5)
   radius: 10,
   spacingXS: 8,
   spacingSM: 12,
   spacingMD: 16,
-  spacingLG: 48, /*calc(var(spacing) * 1.5),*/
-  spacingXL: 56,  /*calc(var(spacing) * 3);*/
-  spacingXXL: 80,   /*calc(var(spacing) * 5)*/
+  spacingLG: 48, // calc(var(spacing) * 1.5),
+  spacingXL: 56,  // calc(var(spacing) * 3);
+  spacingXXL: 80,   // calc(var(spacing) * 5)
   h1Baseline: 172,
   h2Baseline: 35,
   buttonWidth: 188,

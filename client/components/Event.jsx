@@ -40,4 +40,6 @@ function Event({ avatar, hashtag, negativePercentage, positivePercentage, totalU
   );
 }
 
+Event.propTypes = propTypes;
+
 export default Event;

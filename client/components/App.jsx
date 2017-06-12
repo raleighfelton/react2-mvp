@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import client from 'socket.io-client';
 
-// const socket = client('http://localhost:3000');
+const socket = client('http://localhost:3000');
 // const socket = client('http://192.168.0.4:3000');
-const socket = client('http://192.168.1.169:3000');
+// const socket = client('http://192.168.1.169:3000');
 
 import Comparing from './Comparing';
 import Landing from './Landing';

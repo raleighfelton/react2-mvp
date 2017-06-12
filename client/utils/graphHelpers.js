@@ -1,6 +1,6 @@
 function normalizeRating(rating) {
-  if (rating > 1) return 1;
-  if (rating < -1) return -1;
+  if (rating > 1) { return 1; }
+  if (rating < -1) { return -1; }
   return rating;
 }
 
