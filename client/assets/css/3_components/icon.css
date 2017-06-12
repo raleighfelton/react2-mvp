@@ -1,0 +1,22 @@
+/*
+  Icon
+
+  Markup:
+  <footer className="c-footer">
+    <a className="c-footer__link" href="#">Learn More About React2</a>
+    <p className="c-footer__cc">©Copyright {date.getFullYear()} React2</p>
+  </footer>
+
+  Styleguide: Components.Icon
+*/
+
+.c-icon {
+  height: var(--spacing-lg);
+  width: var(--spacing-lg);
+
+  > path {
+    fill: none;
+    stroke: var(--theme-color-primary);
+    stroke-width: 2PX;
+  }
+}

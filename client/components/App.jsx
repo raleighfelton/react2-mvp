@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import client from 'socket.io-client';
 
 const socket = client('http://localhost:3000');
+// const socket = client('http://192.168.0.4:3000');
+// const socket = client('http://192.168.1.169:3000');
 
 import Comparing from './Comparing';
 import Landing from './Landing';
@@ -14,7 +16,9 @@ class App extends Component {
 
     this.state = {
       connected: false,
-      userRatings: []
+      myRatings: [],
+      userRatings: [],
+      reaction: 0
     };
 
     this.addReaction = this.addReaction.bind(this);
@@ -27,12 +31,13 @@ class App extends Component {
   }
 
   addReaction(reaction) {
-    return () => {
+    this.setState((oldState) => {
       socket.emit('reaction', { id: this.state.id, value: reaction });
-      this.setState(() => {
-        return { reaction };
-      });
-    };
+      return {
+        reaction,
+        myRatings: oldState.myRatings.concat(reaction)
+      };
+    });
   }
 
   createUser(user) {
@@ -53,16 +58,19 @@ class App extends Component {
   render() {
     const props = {
       ...this.state,
-      addReaction: this.addReaction
+      addReaction: this.addReaction,
+      negativePercentage: 45,
+      positivePercentage: 56,
+      totalUsers: 124
     };
 
     return (
       <Router>
-        <div className="body">
+        <Switch>
           <Route exact path="/" render={() => <Landing {...props} />} />
           <Route path="/reacting" render={() => <Reacting {...props} />} />
           <Route path="/compare" render={() => <Comparing {...props} />} />
-        </div>
+        </Switch>
       </Router>
     );
   }

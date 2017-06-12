@@ -16,14 +16,13 @@
 
 /* 3_components */
 @import "3_components/back-header";
-@import "3_components/button-share";
 @import "3_components/buttons";
 @import "3_components/content";
 @import "3_components/event";
 @import "3_components/event-content";
 @import "3_components/event-image";
-@import "3_components/footer";
 @import "3_components/headline";
+@import "3_components/icon";
 @import "3_components/splash";
 @import "3_components/links";
 @import "3_components/logo";
@@ -37,6 +36,7 @@
 /* 4_layout */
 @import "4_layout/content";
 @import "4_layout/footer";
+@import "4_layout/full-screen-flex";
 @import "4_layout/header";
 @import "4_layout/main";
 

@@ -1,7 +1,4 @@
 .l-main {
-  display: flex;
-  height: calc(100% - (var(--spacing) * 2));
-  justify-content: center;
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--spacing);
@@ -9,17 +6,24 @@
   position: relative;
 
   @media screen and (min-width: 1024px) {
-    height: calc(100% - (var(--spacing) * 5));
     justify-content: flex-start;
     max-width: 1024px;
   }
 
   &--landing {
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+
+    @media screen and (min-width: 1024px) {
+      justify-content: flex-start;
+    }
   }
 
-  &--compare {
+  &--graph {
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    flex-grow: 1;
+    width: 100%;
   }
 }
