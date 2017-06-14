@@ -2,8 +2,7 @@ const User = require('../models/user');
 const moment = require('moment');
 const faker = require('faker');
 
-
-module.exports = function(socket, io) {
+function connection(socket, io) {
   function broadcastConnectedUsers() {
     User.find({ connected: true }, 'reaction avatar')
       .then((users) => {
@@ -57,3 +56,7 @@ module.exports = function(socket, io) {
       });
   });
 }
+
+module.exports = {
+  connection
+};

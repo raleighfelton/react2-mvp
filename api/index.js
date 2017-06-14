@@ -1,7 +1,6 @@
 const app = require('./helpers/express');
 const http = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(http);
-const User = require('./models/user');
 const SocketController = require('./controllers/SocketController');
 require('./config/database');
 
@@ -10,7 +9,7 @@ app.get('/api', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  SocketController(socket, io);
+  SocketController.connection(socket, io);
 });
 
 const port = (process.env.NODE_ENV === 'production') ? process.env.PORT : 3000;
