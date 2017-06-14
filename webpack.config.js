@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var directory = 'build';
@@ -13,7 +14,7 @@ var config = {
   },
   entry: ['./client/index.jsx'],
   output: {
-    filename: 'assets/bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, directory)
   },
   module: {
@@ -50,9 +51,11 @@ var config = {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
       }
     }),
+    new CopyWebpackPlugin([
+      { from: 'client/assets/img/favicon' }
+    ]),
     new HtmlWebpackPlugin({
-      template: 'client/index.html',
-      favicon: 'client/assets/img/favicon/favicon.ico'
+      template: 'client/index.html'
     })
   ]
 };

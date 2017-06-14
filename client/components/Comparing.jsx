@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import graphCompare from '../assets/img/graph_compare.svg';
 // Components
 import BackArrow from './BackArrow';
-import Event from './Event';
 
 const propTypes = {
   avatar: PropTypes.string,
@@ -24,7 +23,6 @@ function Comparing(props) {
         </Link>
       </div>
       <div className="l-main">
-        <Event {...props} />
         <div>
           <img src={graphCompare} />
         </div>

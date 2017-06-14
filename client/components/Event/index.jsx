@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import client from 'socket.io-client';
-import axios from 'axios';
+// Socket!
+const socket = client('http://192.168.1.169:3000');
+// const socket = client('http://localhost:3000');
 
-const address = 'http://127.0.0.1:3000';
-// const address = 'http://192.168.0.4:3000';
-// const address = 'http://192.168.1.169:3000';
+import fullViewportHOC from '../fullViewportHOC';
+import Comparing from '../Comparing';
+import Reacting from '../Reacting';
 
-const socket = client(address);
-
-import Comparing from './Comparing';
-import Landing from './Landing';
-import Reacting from './Reacting';
-
-class App extends Component {
+// This is going to be the new container for the things
+class Event extends Component {
   constructor(props) {
     super(props);
 
@@ -26,7 +23,6 @@ class App extends Component {
 
     this.addReaction = this.addReaction.bind(this);
     this.createUser = this.createUser.bind(this);
-    this.initUser = this.initUser.bind(this);
     this.update = this.update.bind(this);
 
     socket.on('new user', this.createUser);
@@ -34,13 +30,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/profile')
-      .then(({ data }) => {
-        this.initUser(data.user);
-      })
-      .catch(() => {
-        this.initUser();
-      });
+    if (!this.props.user) {
+      socket.emit('new user');
+    }
   }
 
   addReaction(reaction) {
@@ -57,16 +49,9 @@ class App extends Component {
     this.setState({
       avatar: user.avatar,
       connected: true,
-      handle: user.handle,
       id: user._id,
-      name: user.name,
-      color: user.profileBackgroundColor,
       reaction: user.reaction
     });
-  }
-
-  initUser(u) {
-    socket.emit('new user', u);
   }
 
   update(userRatings) {
@@ -79,22 +64,20 @@ class App extends Component {
     const props = {
       ...this.state,
       addReaction: this.addReaction,
-      initUser: this.initUser,
       negativePercentage: 45,
       positivePercentage: 56,
       totalUsers: 124
     };
 
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/" render={() => <Landing {...props} />} />
-          <Route path="/reacting" render={() => <Reacting {...props} />} />
-          <Route path="/compare" render={() => <Comparing {...props} />} />
-        </Switch>
-      </Router>
+      <div>
+        <Route path="/reacting" render={() => <Reacting {...props} />} />
+        <Route path="/compare" render={() => <Comparing {...props} />} />
+      </div>
     );
   }
 }
 
-export default App;
+Event.propTypes = propTypes;
+
+export default fullViewportHOC(Event);
