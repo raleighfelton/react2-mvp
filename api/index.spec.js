@@ -5,6 +5,7 @@ require('./index.js');
 const mongoose = require('./config/database');
 const Cleaner = require('database-cleaner');
 const dbCleaner = new Cleaner('mongodb');
+const moment = require('moment');
 
 const options = {
   transports: ['websocket'],
@@ -34,7 +35,7 @@ describe('socket', function() {
       done();
     });
 
-    it('updates that users reaction', function(done) {
+    it.only('updates that users reaction', function(done) {
       const expectedReaction = 100;
       const newUser = new User();
       newUser.save()
@@ -45,6 +46,8 @@ describe('socket', function() {
               User.find({ _id: savedUser._id })
                 .then(([user]) => {
                   expect(user.reaction).to.eq(expectedReaction);
+                  expect(user.reactions[0].value).to.eq(expectedReaction);
+                  expect(moment(user.reactions[0].createdAt).valueOf()).to.lt(moment());
                   done();
                 }).catch(done);
             });

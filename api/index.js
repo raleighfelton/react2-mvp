@@ -3,6 +3,7 @@ const app = require('./helpers/express');
 const http = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(http);
 const User = require('./models/user');
+const moment = require('moment');
 require('./config/database');
 
 app.get('/api', (req, res) => {
@@ -45,11 +46,14 @@ io.on('connection', (socket) => {
   // broadcasts:
   //  - connected users (array of all connected users)
   socket.on('reaction', function(reaction) {
-    console.log(reaction); // eslint-disable-line no-console
     User.find({ _id: reaction.id })
       .then(([user]) => {
         user.reaction = reaction.value;
         user.connected = true;
+        user.reactions.push({
+          value: reaction.value,
+          createdAt: moment().valueOf()
+        });
         user.save()
           .then(() => {
             broadcastConnectedUsers(); // Broadcast all newly-connected users

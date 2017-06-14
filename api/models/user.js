@@ -6,6 +6,13 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
+  reactions: {
+    type: [{
+      value: Number,
+      createdAt: Date
+    }],
+    default: []
+  },
   connected: {
     type: Boolean,
     default: false
