@@ -9,13 +9,6 @@ app.get('/api', (req, res) => {
   res.send({ sah: 'doo' });
 });
 
-function broadcastConnectedUsers() {
-  User.find({ connected: true }, 'reaction avatar')
-    .then((users) => {
-      io.emit('connected users', users); // Broadcast all newly-connected users
-    });
-}
-
 io.on('connection', (socket) => {
   SocketController(socket, io);
 });
