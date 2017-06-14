@@ -11,7 +11,7 @@ app.get('/api', (req, res) => {
 });
 
 function broadcastConnectedUsers() {
-  User.find({ connected: true })
+  User.find({ connected: true }, 'reaction avatar')
     .then((users) => {
       io.emit('connected users', users); // Broadcast all newly-connected users
     });
