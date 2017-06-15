@@ -37,7 +37,6 @@ var config = {
             loader: 'url-loader',
             query: {
               limit: 25000,
-              name: './[hash].[ext]'
             }
           }
         ]
