@@ -1,5 +1,6 @@
 require('dotenv').load();
 const faker = require('faker');
+const User = require('./models/user')
 const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
 const app = require('./routes');
@@ -130,7 +131,7 @@ io.on('connection', (socket) => {
       .catch((err) => {
         console.warn(err); // eslint-disable-line no-console
       });
-  SocketController.connection(socket, io);
+  });
 });
 
 const port = (process.env.NODE_ENV === 'production') ? process.env.PORT : 3000;
