@@ -1,8 +1,8 @@
 const { expect } = require('chai');
 const io = require('socket.io-client');
-const User = require('./models/user');
-require('./index.js');
-const mongoose = require('./config/database');
+const User = require('../models/user');
+require('../index.js');
+const mongoose = require('../config/database');
 const Cleaner = require('database-cleaner');
 const dbCleaner = new Cleaner('mongodb');
 const moment = require('moment');
@@ -35,7 +35,7 @@ describe('socket', function() {
       done();
     });
 
-    it.only('updates that users reaction', function(done) {
+    it('updates that users reaction', function(done) {
       const expectedReaction = 100;
       const newUser = new User();
       newUser.save()
