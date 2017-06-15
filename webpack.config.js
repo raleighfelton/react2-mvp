@@ -35,7 +35,10 @@ var config = {
         use: [
           {
             loader: 'url-loader',
-            query: { limit: 25000 }
+            query: {
+              limit: 25000,
+              name: './assets/[hash].[ext]'
+            }
           }
         ]
       }
