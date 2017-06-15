@@ -38,7 +38,6 @@ function connection(socket, io) {
   // broadcasts:
   //  - connected users (array of all connected users)
   socket.on('reaction', function(reaction) {
-    console.log(reaction);
     User.find({ _id: reaction.id })
       .then(([user]) => {
         user.reaction = reaction.value;
