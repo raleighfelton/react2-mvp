@@ -2,10 +2,10 @@ require('dotenv').load();
 const faker = require('faker');
 const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
-const app = require('./helpers/express');
+const app = require('./routes');
 const http = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(http);
-const User = require('./models/user');
+const SocketController = require('./controllers/SocketController');
 require('./config/database');
 
 passport.use(new Strategy({
@@ -130,7 +130,7 @@ io.on('connection', (socket) => {
       .catch((err) => {
         console.warn(err); // eslint-disable-line no-console
       });
-  });
+  SocketController.connection(socket, io);
 });
 
 const port = (process.env.NODE_ENV === 'production') ? process.env.PORT : 3000;

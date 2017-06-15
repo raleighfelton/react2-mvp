@@ -36,7 +36,9 @@ var config = {
         use: [
           {
             loader: 'url-loader',
-            query: { limit: 25000 }
+            query: {
+              limit: 25000,
+            }
           }
         ]
       }
@@ -70,6 +72,7 @@ if (process.env.NODE_ENV === 'production') {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
+        publicPath: '/',
         use: [
           {
             loader: 'css-loader?importLoaders=1',

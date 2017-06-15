@@ -3,9 +3,9 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import client from 'socket.io-client';
 import axios from 'axios';
 
-const address = 'http://127.0.0.1:3000';
-// const address = 'http://192.168.0.4:3000';
-// const address = 'http://192.168.1.169:3000';
+const socket = client(`${window.location.protocol}//${window.location.hostname}:${window.location.port}`);
+// const socket = client('http://192.168.0.4:3000');
+// const socket = client('http://192.168.1.169:3000');
 
 const socket = client(address);
 
