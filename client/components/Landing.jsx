@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/img/logo.svg';
 import eventImage from '../assets/img/event-fpo.png';
 
-function Landing({ initUser }) {
+function Landing() {
   const date = new Date();
 
   return (

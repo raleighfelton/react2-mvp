@@ -14,7 +14,7 @@ const propTypes = {
   totalUsers: PropTypes.number
 };
 
-function Comparing(props) {
+function Comparing() {
   return (
     <div className="body">
       <div className="c-back-header">

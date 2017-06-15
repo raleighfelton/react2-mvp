@@ -1,3 +1,4 @@
+import throttle from 'lodash/throttle';
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import client from 'socket.io-client';
@@ -8,6 +9,10 @@ const address = `${window.location.protocol}//${window.location.hostname}:${wind
 // const socket = client('http://192.168.1.169:3000');
 
 const socket = client(address);
+
+const emitReaction = throttle(function(id, reaction) {
+  socket.emit('reaction', { id, value: reaction });
+}, 200);
 
 import Comparing from './Comparing';
 import Landing from './Landing';
@@ -45,7 +50,8 @@ class App extends Component {
 
   addReaction(reaction) {
     this.setState((oldState) => {
-      socket.emit('reaction', { id: this.state.id, value: reaction });
+      emitReaction(this.state.id, reaction);
+
       return {
         reaction,
         myRatings: oldState.myRatings.concat(reaction)

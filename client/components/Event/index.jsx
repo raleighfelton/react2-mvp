@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 import client from 'socket.io-client';
 // Socket!
 const socket = client('http://192.168.1.169:3000');
@@ -8,6 +9,15 @@ const socket = client('http://192.168.1.169:3000');
 import fullViewportHOC from '../fullViewportHOC';
 import Comparing from '../Comparing';
 import Reacting from '../Reacting';
+
+const propTypes = {
+  avatar: PropTypes.string,
+  hashtag: PropTypes.string,
+  negativePercentage: PropTypes.number,
+  positivePercentage: PropTypes.number,
+  totalUsers: PropTypes.number,
+  user: PropTypes.object
+};
 
 // This is going to be the new container for the things
 class Event extends Component {
