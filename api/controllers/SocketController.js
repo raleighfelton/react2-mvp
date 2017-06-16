@@ -15,9 +15,9 @@ function connection(socket, io) {
   //  - new user (user object)
   // broadcasts:
   //  - connected users (array of all connected users including new user)
-  socket.on('new user', function() {
+  socket.on('new user', function(u) {
     const user = new User();
-    user.avatar = faker.internet.avatar();
+    user.avatar = (u && u.avatar) || faker.internet.avatar();
     user.connected = true;
     user.save()
       .then((saved) => {
@@ -38,14 +38,11 @@ function connection(socket, io) {
   // broadcasts:
   //  - connected users (array of all connected users)
   socket.on('reaction', function(reaction) {
+    // console.log(reaction); // eslint-disable-line no-console
     User.find({ _id: reaction.id })
       .then(([user]) => {
         user.reaction = reaction.value;
         user.connected = true;
-        user.reactions.push({
-          value: reaction.value,
-          createdAt: moment().valueOf()
-        });
         user.save()
           .then(() => {
             broadcastConnectedUsers(); // Broadcast all newly-connected users
