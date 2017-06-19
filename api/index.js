@@ -45,13 +45,6 @@ app.get('/api/profile',
 
 app.get('/api/users', UsersController.index);
 
-function broadcastConnectedUsers() {
-  User.find({ connected: true })
-    .then((users) => {
-      io.emit('connected users', users); // Broadcast all newly-connected users
-    });
-}
-
 io.on('connection', (socket) => SocketController.connection(socket, io));
 
 const port = (process.env.NODE_ENV === 'production') ? process.env.PORT : 3000;
