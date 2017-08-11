@@ -38,4 +38,29 @@ describe('UsersController', () => {
         });
     });
   });
+
+  describe('/api/users/:id/reactions', () => {
+    it('returns users', function(done) {
+      new User({
+        reaction: 1,
+        reactions: [
+          {
+            value: 1,
+            createdAt: moment().valueOf()
+          }
+        ]
+      }).save()
+        .then((user) => {
+          chai.request(app)
+            .get(`/api/users/${user._id}/reactions`)
+            .then((res) => {
+              expect(res.body.user._id).to.eq(user._id.toString());
+              expect(res.body.user.reactions[0].value).to.deep.eq(user.reactions[0].value);
+              expect(res.body.user.reactions[0]._id).to.eq(user.reactions[0]._id.toString());
+              expect(res.body.user.reactions[0].createdAt).to.eq(user.reactions[0].createdAt.toISOString());
+              done();
+            }).catch(done);
+        });
+    });
+  });
 });

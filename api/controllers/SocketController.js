@@ -38,13 +38,15 @@ function connection(socket, io) {
   // broadcasts:
   //  - connected users (array of all connected users)
   socket.on('reaction', function(reaction) {
-    // console.log(reaction); // eslint-disable-line no-console
     User.find({ _id: reaction.id })
       .then(([user]) => {
-        user.reaction = reaction.value;
+        user.reactions = [{
+          value: reaction.value,
+          createdAt: Date.now()
+        }].concat(user.reactions);
         user.connected = true;
         user.save()
-          .then(() => {
+          .then((user) => {
             broadcastConnectedUsers(); // Broadcast all newly-connected users
           });
       })

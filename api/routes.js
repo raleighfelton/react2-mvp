@@ -6,5 +6,6 @@ app.get('/api', (req, res) => {
 });
 
 app.get('/api/users', UsersController.index);
+app.get('/api/users/:id', UsersController.reactions);
 
 module.exports = app;

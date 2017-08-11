@@ -9,6 +9,21 @@ function index(req, res) {
     });
 }
 
+function reactions(req, res) {
+  User.find({_id: req.params.id})
+    .then((user) => {
+      res.send({
+        user: user[0]
+      });
+    })
+    .catch((err) => {
+      res.send({
+        error: err
+      });
+    });
+}
+
 module.exports = {
-  index
+  index,
+  reactions
 };
