@@ -19,8 +19,8 @@ const vars = {
   spacingSM: 12,
   spacingMD: 16,
   spacingLG: 48, // calc(var(spacing) * 1.5),
-  spacingXL: 56,  // calc(var(spacing) * 3);
-  spacingXXL: 80,   // calc(var(spacing) * 5)
+  spacingXL: 56, // calc(var(spacing) * 3);
+  spacingXXL: 80, // calc(var(spacing) * 5)
   h1Baseline: 172,
   h2Baseline: 35,
   buttonWidth: 188,
