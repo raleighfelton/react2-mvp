@@ -23,13 +23,8 @@ const app = express();
 
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next){
-    console.log('req start: ',req.secure, req.hostname, req.url, app.get('port'));
-    if (req.secure) {
-      return next();
-    }
-
+    if (!req.header('x-forwarded-proto')) { return next(); }
     const url = 'https://'+req.hostname  + req.url
-    console.log(`redirecting to ${url}`);
     res.redirect(url);
   });
 }
