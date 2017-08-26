@@ -1,6 +1,6 @@
 require('dotenv').load();
 const faker = require('faker');
-const passport = require('./helpers/passport');
+// const passport = require('./helpers/passport');
 const User = require('./models/user')
 const app = require('./routes');
 const http = require('http').Server(app); // eslint-disable-line new-cap
@@ -10,8 +10,8 @@ const SocketController = require('./controllers/SocketController');
 const UsersController = require('./controllers/UsersController');
 require('./config/database');
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.use(sslRedirect());
 
 // FIXME maybe this should all be in it's own file?
@@ -23,13 +23,13 @@ app.get('/login', (req, res) => {
   res.json({ user });
 });
 
-app.get('/login/twitter', passport.authenticate('twitter'));
+// app.get('/login/twitter', passport.authenticate('twitter'));
 
-app.get('/login/twitter/return',
-  passport.authenticate('twitter', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/');
-  });
+// app.get('/login/twitter/return',
+//   passport.authenticate('twitter', { failureRedirect: '/' }),
+//   function(req, res) {
+//     res.redirect('/');
+//   });
 
 app.get('/api/profile',
   require('connect-ensure-login').ensureLoggedIn(),
