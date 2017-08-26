@@ -14,11 +14,11 @@ app.use(passport.session());
 
 // FIXME maybe this should all be in it's own file?
 app.get('/login', (req, res) => {
-  const user = {
-    avatar: faker.internet.avatar(),
-    connected: false
-  };
-  res.json({ user });
+  res.status(401);
+  res.render('error', {
+    message: 'unauthorized',
+    error: {}
+  });
 });
 
 app.get('/logout', function (req, res) {
@@ -31,7 +31,7 @@ app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
   passport.authenticate('twitter', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/#/reacting');
   });
 
 // Middleware => Check for login
@@ -46,6 +46,7 @@ app.get('/api/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     const usefulProfileInfo = {
+      id: req.user._id,
       oauthID: req.user.oauthID, // req.user.id_str
       name: req.user.name,
       // handle: jProfile.screen_name,
