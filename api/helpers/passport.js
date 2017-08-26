@@ -5,13 +5,14 @@ const User = require('../models/user');
 
 const twitterCallbackURL = {
   development: 'http://127.0.0.1:3000/auth/twitter/callback',
+  test: 'http://127.0.0.1:3000/auth/twitter/callback',
   production: 'https://app.react2.co/auth/twitter/callback',
 };
 
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_CLIENT_ID,
   consumerSecret: process.env.TWITTER_CLIENT_SECRET,
-  callbackURL: 'http://127.0.0.1:3000/auth/twitter/callback'
+  callbackURL: twitterCallbackURL[process.env.NODE_ENV]
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({ oauthID: profile.id }, function(err, user) {
