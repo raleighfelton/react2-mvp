@@ -8,7 +8,7 @@ const address = `${window.location.protocol}//${window.location.hostname}:${wind
 // const socket = client('http://192.168.0.4:3000');
 // const socket = client('http://192.168.1.169:3000');
 
-const socket = client(address, { secure: true });
+const socket = client(address, { secure: window.location.protocol === 'https' });
 
 const emitReaction = throttle(function(id, reaction) {
   socket.emit('reaction', { id, value: reaction });
