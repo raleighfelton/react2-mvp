@@ -35,7 +35,7 @@ describe('socket', function() {
       done();
     });
 
-    it.only('updates that users reaction', function(done) {
+    it('updates that users reaction', function(done) {
       const expectedReaction = 100;
       const newUser = new User();
       newUser.save()
