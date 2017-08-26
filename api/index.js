@@ -9,19 +9,6 @@ const SocketController = require('./controllers/SocketController');
 const UsersController = require('./controllers/UsersController');
 require('./config/database');
 
-function ensureSecure(req, res, next){
-  console.log("Redirecting");
-  if(req.headers["x-forwarded-proto"] === "https"){
-    // OK, continue
-    return next();
-  };
-  res.redirect('https://'+req.hostname+req.url);
-};
-
-if (process.env.NODE_ENV == 'production') {
-  app.all('*', ensureSecure);
-}
-
 // app.use(passport.initialize());
 // app.use(passport.session());
 
