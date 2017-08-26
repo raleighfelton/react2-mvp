@@ -20,10 +20,9 @@ function errorHandler(err, req, res, next) { // eslint-disable-line no-unused-va
 
 const app = express();
 
-
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next){
-    if (!req.header('x-forwarded-proto')) { return next(); }
+    if (!req.header('x-forwarded-proto') !== 'https') { return next(); }
     const url = 'https://'+req.hostname  + req.url
     res.redirect(url);
   });
