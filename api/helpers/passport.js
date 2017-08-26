@@ -8,8 +8,6 @@ const twitterCallbackURL = {
   production: 'https://app.react2.co/auth/twitter/callback',
 };
 
-console.log(process.env.TWITTER_CLIENT_SECRET);
-
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_CLIENT_ID,
   consumerSecret: process.env.TWITTER_CLIENT_SECRET,
