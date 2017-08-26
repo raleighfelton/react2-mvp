@@ -5,14 +5,24 @@ const User = require('./models/user')
 const app = require('./routes');
 const http = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(http);
-const sslRedirect = require('heroku-ssl-redirect');
 const SocketController = require('./controllers/SocketController');
 const UsersController = require('./controllers/UsersController');
 require('./config/database');
 
+function ensureSecure(req, res, next){
+  if(req.headers["x-forwarded-proto"] === "https"){
+    // OK, continue
+    return next();
+  };
+  res.redirect('https://'+req.hostname+req.url);
+};
+
+if (process.env.NODE_ENV == 'production') {
+  app.all('*', ensureSecure);
+}
+
 // app.use(passport.initialize());
 // app.use(passport.session());
-app.use(sslRedirect());
 
 // FIXME maybe this should all be in it's own file?
 app.get('/login', (req, res) => {
