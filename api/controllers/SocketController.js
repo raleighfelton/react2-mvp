@@ -40,6 +40,7 @@ function connection(socket, io) {
   socket.on('reaction', function(reaction) {
     User.find({ _id: reaction.id })
       .then(([user]) => {
+        user.reaction = reaction.value;
         user.reactions = [{
           value: reaction.value,
           createdAt: Date.now()

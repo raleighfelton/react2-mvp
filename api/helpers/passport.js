@@ -1,36 +1,54 @@
-const Strategy = require('passport-twitter').Strategy;
+require('dotenv').load();
 const passport = require('passport');
+const TwitterStrategy = require('passport-twitter').Strategy;
+const User = require('../models/user');
 
-passport.use(new Strategy({
-    consumerKey: process.env.R2_TWITTER_CONSUMER_KEY || '',
-    consumerSecret: process.env.R2_TWITTER_CONSUMER_SECRET || '',
-    callbackURL: 'http://127.0.0.1:3000/login/twitter/return'
+const twitterCallbackURL = {
+  development: 'http://127.0.0.1:3000/auth/twitter/callback',
+  production: 'https://app.react2.co/auth/twitter/callback',
+};
+
+console.log(process.env.TWITTER_CLIENT_SECRET);
+
+passport.use(new TwitterStrategy({
+  consumerKey: process.env.TWITTER_CLIENT_ID,
+  consumerSecret: process.env.TWITTER_CLIENT_SECRET,
+  callbackURL: 'http://127.0.0.1:3000/auth/twitter/callback'
   },
-  function(token, tokenSecret, profile, cb) {
-    // In this example, the user's Twitter profile is supplied as the user
-    // record.  In a production-quality application, the Twitter profile should
-    // be associated with a user record in the application's database, which
-    // allows for account linking and authentication with other identity
-    // providers.
-    const jProfile = profile._json;
-    const usefulProfileInfo = {
-      twitterId: jProfile.id, // jProfile.id_str
-      name: jProfile.name,
-      handle: jProfile.screen_name,
-      profileBackgroundColor: jProfile.profile_background_color,
-      avatar: jProfile.profile_image_url, // jProfile.profile_image_url_https
-    };
+  function(accessToken, refreshToken, profile, done) {
+    User.findOne({ oauthID: profile.id }, function(err, user) {
+      if(err) { console.log(err); }
 
-    return cb(null, profile);
+      user = user || new User();
+      user.oauthID = profile.id;
+      user.name = profile.displayName;
+      user.created = user ? user.created : Date.now();
+      user.avatar = profile.photos[0].value;
+      // save user
+      user.save(function(err) {
+        if(err) {
+          console.log(err);  // handle errors!
+        } else {
+          console.log("saving user ...");
+          done(null, user);
+        }
+      });
+    });
   }
 ));
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
+// serialize and deserialize
+passport.serializeUser(function(user, done) {
+  // console.log('serializeUser: ' + user._id);
+  done(null, user._id);
 });
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user){
+    // console.log(user);
+      if(!err) done(null, user);
+      else done(err, null);
+    });
 });
 
 module.exports = passport;

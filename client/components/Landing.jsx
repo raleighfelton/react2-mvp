@@ -13,6 +13,9 @@ function Landing() {
         <img src={logo} alt="React2 logo" />
       </div>
 
+      <a href="/auth/twitter">TWITTER LOGIN</a>
+      <a href="/logout">LOGOUT</a>
+
       <div className="l-main l-main--landing">
 
         <div className="c-content">

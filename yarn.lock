@@ -4102,6 +4102,10 @@ mongodb@2.2.26:
     mongodb-core "2.1.10"
     readable-stream "2.2.7"
 
+mongoose-mongodb-errors@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/mongoose-mongodb-errors/-/mongoose-mongodb-errors-0.0.2.tgz#7feacb8c901b5f899c616652337b2f499717291c"
+
 mongoose@^4.9.6:
   version "4.9.6"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.9.6.tgz#8485879893a33fe4b8c8b596950cfa9a8d597ec1"

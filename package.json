@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.jsx ./client && eslint --ext .js,.jsx ./api && stylelint ./client/**/*.css",
     "watch-client": "webpack --progress --colors --watch",
-    "watch-api": "nodemon --watch api api/index.js",
+    "watch-api": "nodemon --inspect --watch api api/index.js",
     "build": "NODE_ENV=production webpack --progress --colors",
     "start": "yarn run watch-client & yarn run watch-api",
     "test": "NODE_ENV=test mocha --compilers jsx:babel-register --opts 'support/mocha.opts' api/**/*.spec.js",
@@ -52,6 +52,7 @@
     "mocha": "^3.3.0",
     "moment": "^2.18.1",
     "mongoose": "^4.9.6",
+    "mongoose-mongodb-errors": "^0.0.2",
     "morgan": "^1.8.2",
     "nodemon": "^1.11.0",
     "normalize.css": "^6.0.0",
