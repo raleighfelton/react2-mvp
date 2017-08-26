@@ -86,6 +86,7 @@ describe('UsersController', () => {
               expect(res.body.success).to.eq("removed users");
               expect(users.length).to.eq(0)
               expect(events.length).to.eq(1)
+              expect(events[0].users.length).to.eq(3)
               done();
             })
             .catch(done)
