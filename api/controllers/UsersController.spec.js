@@ -39,8 +39,8 @@ describe('UsersController', () => {
     });
   });
 
-  describe('/api/users/:id/reactions', () => {
-    it('returns users', function(done) {
+  describe('/api/users/:id', () => {
+    it('returns user', function(done) {
       new User({
         reaction: 1,
         reactions: [
@@ -52,7 +52,7 @@ describe('UsersController', () => {
       }).save()
         .then((user) => {
           chai.request(app)
-            .get(`/api/users/${user._id}/reactions`)
+            .get(`/api/users/${user._id}`)
             .then((res) => {
               expect(res.body.user._id).to.eq(user._id.toString());
               expect(res.body.user.reactions[0].value).to.deep.eq(user.reactions[0].value);

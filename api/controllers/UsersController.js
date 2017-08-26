@@ -9,7 +9,7 @@ function index(req, res) {
     });
 }
 
-function reactions(req, res) {
+function show(req, res) {
   User.find({_id: req.params.id})
     .then((user) => {
       res.send({
@@ -25,5 +25,5 @@ function reactions(req, res) {
 
 module.exports = {
   index,
-  reactions
+  show
 };
