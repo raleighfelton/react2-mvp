@@ -28,7 +28,9 @@ if (process.env.NODE_ENV === 'production') {
       return next();
     }
 
-    res.redirect('https://'+req.hostname + ':' + app.get('secPort') + req.url);
+    const url = 'https://'+req.hostname  + req.url
+    console.log(`redirecting to ${url}`);
+    res.redirect(url);
   });
 }
 
