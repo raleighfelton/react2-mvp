@@ -16,3 +16,11 @@ MVP for React2
 ## Test
 
 ## Deploy
+
+### Notes
+
+#### OAuth Services
+
+Callback Urls:
+http://app.react2.co/auth/twitter/callback
+http://app.react2.co/auth/facebook/callback
