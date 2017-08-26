@@ -10,6 +10,7 @@ const UsersController = require('./controllers/UsersController');
 require('./config/database');
 
 function ensureSecure(req, res, next){
+  console.log("Redirecting");
   if(req.headers["x-forwarded-proto"] === "https"){
     // OK, continue
     return next();
