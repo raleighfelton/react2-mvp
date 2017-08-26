@@ -22,8 +22,11 @@ const app = express();
 
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next){
-    if (!req.header('x-forwarded-proto') !== 'https') { return next(); }
+    console.log('req start: ',req.secure, req.hostname, req.url, app.get('port'));
+    console.log(req.header('x-forwarded-proto'))
+    if (req.header('x-forwarded-proto') !== 'https') { return next(); }
     const url = 'https://'+req.hostname  + req.url
+    console.log(`redirecting to ${url}`);
     res.redirect(url);
   });
 }
