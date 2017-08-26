@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as scale from 'd3-scale';
+import { extent } from 'd3-array';
+import { line } from 'd3-shape';
 
 import sv from '../../utils/styleVariables';
 
@@ -8,17 +10,14 @@ import SVGButton from '../svg/SVGButton';
 import SVGGraphTicksY from '../svg/SVGGraphTicksY';
 
 const propTypes = {
-  avatar: PropTypes.string,
   height: PropTypes.number,
   isMobile: PropTypes.bool,
-  myRatings: PropTypes.array,
-  reaction: PropTypes.number,
-  userRatings: PropTypes.array.isRequired,
+  reactions: PropTypes.array,
   width: PropTypes.number
 };
 
 function Desktop(props) {
-  const { avatar, height, isMobile, myRatings, userRatings, width } = props;
+  const { height, isMobile, reactions, width } = props;
 
   const h1Baseline =
     height / 5 < sv.vars.h1Baseline ? Math.abs(height / 5) : sv.vars.h1Baseline;
@@ -36,12 +35,25 @@ function Desktop(props) {
 
   const yTicks = [-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1];
 
-  const positiveRatings = Math.floor(
-    myRatings.filter(r => r > 0).length / myRatings.length * 100
-  );
-  const negativeRatings = Math.floor(
-    myRatings.filter(r => r < 0).length / myRatings.length * 100
-  );
+  const xDomain = reactions && reactions.length ? extent(reactions, (r) => new Date(r.createdAt)) : [Date.now(), Date.now()];
+
+  console.log(xDomain);
+  console.log(graphLineWidth);
+
+  const xScale = scale
+    .scaleTime()
+    .domain(xDomain)
+    .range([0, graphLineWidth]);
+
+  const positiveRatings = 56;
+  const negativeRatings = 44;
+  const avatar = '';
+
+  // const trendLine = line()
+  //   .x(function(d) { return xScale(d.createdAt); })
+  //   .y(function(d) { return yScale(d.value); });
+  //
+  // console.log(trendLine(reactions));
 
   return (
     <svg
@@ -165,7 +177,7 @@ function Desktop(props) {
           </g>
           <g id="users" transform={`translate(16, ${44 + 8})`}>
             <text style={sv.label} x={`${sv.vars.spacingMD * 2.5}`} y="21">
-              {userRatings.length}k
+              {400}k
             </text>
             <g fill={sv.vars.colorWhite}>
               <path d="M18.6666667,17.3333333 C19.870109,15.7167753 21.8160748,14.6666667 24.0118822,14.6666667 C26.1932942,14.6666667 28.1281297,15.7030517 29.3333333,17.3016127 L27.5503365,17.306915 C26.5954459,16.453917 25.345233,15.9634856 24.0118822,15.9634856 C22.6673498,15.9634856 21.407496,16.4622502 20.4499033,17.3280303 L18.6666667,17.3333333 Z" />
@@ -188,7 +200,7 @@ function Desktop(props) {
               x={`${sv.vars.spacingMD * 2.5}`}
               y="21"
             >
-              {userRatings.length}
+              {500}
             </text>
 
             <g fill={sv.vars.colorBlue} transform="translate(0, 3)">
@@ -205,6 +217,18 @@ function Desktop(props) {
           yTicks={yTicks}
           yScale={yScale}
         />
+        {reactions && reactions.map((r, i) => {
+          console.log(xScale(new Date(r.createdAt)));
+          return (
+            <circle key={i} cx={xScale(new Date(r.createdAt))} cy={yScale(r.value)} r="4" fill="#eee" />
+          );
+        })}
+        {reactions && <path fill="none" stroke="#ffff00" strokeWidth="2" d={reactions.map((r, i) => {
+          if (i === 0) {
+            return `M${xScale(new Date(r.createdAt)) || 0} ${yScale(r.value)}`;
+          }
+          return `L ${xScale(new Date(r.createdAt))} ${yScale(r.value)}`;
+        })} />}
       </g>
     </svg>
   );
