@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Event = require('../models/event');
 
 function index(req, res) {
   User.find({})
@@ -23,7 +24,24 @@ function show(req, res) {
     });
 }
 
+function backup(req, res, next) {
+  User.find({})
+    .then((users) => {
+      event = new Event({ users: users });
+      event.save()
+        .then(() => {
+          User.find({}).remove()
+            .then((u) => {
+              res.json({success: "removed users"});
+            });
+        })
+        .catch(console.log);
+    })
+    .catch(console.log);
+}
+
 module.exports = {
   index,
+  backup,
   show
 };
