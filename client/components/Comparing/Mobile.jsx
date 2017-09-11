@@ -81,7 +81,7 @@ function Mobile(props) {
         />
         {reactions &&
           <path
-            d={trendPath(reactions)}
+            d={trendPath(reactions.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)))}
             stroke={sv.vars.colorPurple}
             strokeWidth="2"
             fill="none"
