@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as scale from 'd3-scale';
+import { extent } from 'd3-array';
+import { line, curveStepAfter } from 'd3-shape';
 
 import sv from '../../utils/styleVariables';
 
@@ -10,11 +12,12 @@ import SentimentGroup from '../svg/SentimentGroup';
 
 const propTypes = {
   height: PropTypes.number,
+  reactions: PropTypes.array,
   width: PropTypes.number
 };
 
 function Mobile(props) {
-  const { height, width } = props;
+  const { height, reactions, width } = props;
 
   const headingLeft = width / 8;
   const headingRight = width - sv.vars.spacingMD;
@@ -30,16 +33,18 @@ function Mobile(props) {
 
   const yTicks = [-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1];
 
-  // const margin = {
-  //   top: sv.vars.spacingXL,
-  //   bottom: 5,
-  //   right: 17,
-  //   left: 17
-  // };
-  // const inner = {
-  //   height: height - margin.top - margin.bottom,
-  //   width: width - margin.right - margin.left
-  // };
+  const xDomain = reactions && reactions.length ? extent(reactions, (r) => new Date(r.createdAt)) : [Date.now(), Date.now()];
+
+  const xScale = scale
+    .scaleTime()
+    .domain(xDomain)
+    .range([0, graphLineWidth]);
+
+  const trendPath = line()
+    .x(d => xScale(new Date(d.createdAt)))
+    .y(d => yScale(d.value))
+    .defined(() => true)
+    .curve(curveStepAfter);
 
   return (
     <svg
@@ -47,7 +52,7 @@ function Mobile(props) {
       height={height}
       width={width}
     >
-      <Link to="/">
+      <Link to="/reacting">
         <g
           className="c-icon"
           transform={`translate(${sv.vars.spacingSM}, ${sv.vars.spacingSM})`}
@@ -74,6 +79,13 @@ function Mobile(props) {
           yTicks={yTicks}
           yScale={yScale}
         />
+        {reactions &&
+          <path
+            d={trendPath(reactions)}
+            stroke={sv.vars.colorPurple}
+            strokeWidth="2"
+            fill="none"
+          />}
       </g>
     </svg>
   );

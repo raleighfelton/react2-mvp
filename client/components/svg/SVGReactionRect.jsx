@@ -7,6 +7,7 @@ const propTypes = {
   addReaction: PropTypes.func,
   graphLineHeight: PropTypes.number,
   graphLineTop: PropTypes.number,
+  width: PropTypes.number,
   yScale: PropTypes.func
 };
 
@@ -85,15 +86,15 @@ class SVGReactionRect extends Component {
   }
 
   render() {
-    const { graphLineHeight } = this.props;
+    const { graphLineHeight, width } = this.props;
 
     return (
       <rect
-        width={88}
+        width={width}
         height={graphLineHeight + (sv.vars.spacingMD * 2)}
         x={0}
         y={-sv.vars.spacingMD}
-        style={{ fill: 'rgba(20, 20, 21, 0.9)', boxShadow: '3px 2px 5px rgba(0, 0, 0, 0.2)' }}
+        style={{ fill: 'rgba(20, 20, 21, 0.001)' }}
         rx={10}
         // onKeyDown={this.handleKeyDown}
         // onKeyUp={this.disengage}

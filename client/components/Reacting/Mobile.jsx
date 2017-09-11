@@ -6,6 +6,7 @@ import * as scale from 'd3-scale';
 import sv from '../../utils/styleVariables';
 
 import SVGGraphTicksY from '../svg/SVGGraphTicksY';
+import SVGDisplayRect from '../svg/SVGDisplayRect';
 import SVGReactionRect from '../svg/SVGReactionRect';
 import SVGScaleTicksY from '../svg/SVGScaleTicksY';
 
@@ -109,6 +110,11 @@ function Mobile(props) {
             graphLineTop={graphLineTop}
             yScale={yScale}
           />
+          <SVGDisplayRect
+            graphLineHeight={graphLineHeight}
+            graphLineTop={graphLineTop}
+            yScale={yScale}
+          />
           <SVGScaleTicksY
             yTicks={yTicks}
             yScale={yScale}
@@ -141,6 +147,13 @@ function Mobile(props) {
             transform={`translate(88, ${yScale(reaction || 0) - (sv.vars.spacingXL / 2)})`}
           />
         </g>
+        <SVGReactionRect
+          addReaction={addReaction}
+          graphLineHeight={graphLineHeight}
+          graphLineTop={graphLineTop}
+          width={graphLineWidth}
+          yScale={yScale}
+        />
       </g>
     </svg>
   );

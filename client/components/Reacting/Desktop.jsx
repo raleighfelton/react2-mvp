@@ -6,6 +6,7 @@ import sv from '../../utils/styleVariables';
 
 import SVGButton from '../svg/SVGButton';
 import SVGGraphTicksY from '../svg/SVGGraphTicksY';
+import SVGDisplayRect from '../svg/SVGDisplayRect';
 import SVGReactionRect from '../svg/SVGReactionRect';
 import SVGScaleTicksY from '../svg/SVGScaleTicksY';
 
@@ -232,8 +233,7 @@ function Desktop(props) {
           id="scale"
           transform={`translate(${graphLineWidth / 2 - 88 / 2}, 0)`}
         >
-          <SVGReactionRect
-            addReaction={addReaction}
+          <SVGDisplayRect
             graphLineHeight={graphLineHeight}
             graphLineTop={graphLineTop}
             yScale={yScale}
@@ -273,6 +273,13 @@ function Desktop(props) {
               sv.vars.spacingXL / 2})`}
           />
         </g>
+        <SVGReactionRect
+          addReaction={addReaction}
+          graphLineHeight={graphLineHeight}
+          graphLineTop={graphLineTop}
+          width={graphLineWidth}
+          yScale={yScale}
+        />
       </g>
     </svg>
   );

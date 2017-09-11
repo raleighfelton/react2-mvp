@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import logo from '../assets/img/logo.svg';
 import eventImage from '../assets/img/event-fpo.png';
@@ -13,8 +12,6 @@ function Landing() {
         <img src={logo} alt="React2 logo" />
       </div>
 
-      <a href="/logout">LOGOUT</a>
-
       <div className="l-main l-main--landing">
 
         <div className="c-content">
@@ -27,7 +24,7 @@ function Landing() {
           </h1>
 
           <p className="c-content__p">This is a proof of concept for a new platform sentiment platform React2. React2 allows you to track your emotional reactions to live events & compare it to your friends & the rest of the world, in real time.</p>
-          <a href="/auth/twitter" className="c-content__button c-button c-button--round">Login with Twitter</a>
+          <a href="/auth/twitter" target="_self" className="c-content__button c-button c-button--round">Login with Twitter</a>
         </div>
 
         <div className="c-event-content">

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 const propTypes = {
@@ -8,7 +8,7 @@ const propTypes = {
   location: PropTypes.object
 };
 
-class PrivateRoute extends Component {
+class PrivateRoute extends React.Component {
   constructor(props) {
     super(props);
 
@@ -39,14 +39,20 @@ class PrivateRoute extends Component {
 
   render() {
     const { component: Component, ...rest } = this.props;
-    console.log(this.state);
 
     return (
       <Route
         {...rest}
         render={(props) => {
           if (!this.state.rehydrated) {
-            return <div>Is Loading!!!</div>;
+            return (
+              <div className="l-container">
+                <h1>Is Loading!!!</h1>
+                <Link className="c-button" to="/reacting">Reacting</Link>
+                <Link className="c-button" to="/compare">Compare</Link>
+                <Link className="c-button" to="/">Back</Link>
+              </div>
+            );
           }
 
           const p = {
@@ -56,7 +62,7 @@ class PrivateRoute extends Component {
           };
 
           return this.state.isAuthenticated ?
-            <Component { ...p } /> :
+            <Component {...p} /> :
             <Redirect
               to={{ pathname: '/', state: { from: props.location } }}
             />;

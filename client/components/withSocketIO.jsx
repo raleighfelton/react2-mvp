@@ -1,5 +1,6 @@
 import throttle from 'lodash/throttle';
 import React from 'react';
+import PropTypes from 'prop-types';
 import client from 'socket.io-client';
 
 const address = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
@@ -13,6 +14,12 @@ const emitReaction = throttle(function(id, reaction) {
 export default function withSocketIO(WrappedComponent) {
   // ...and returns another component...
   return class extends React.Component {
+    // eslint-disable
+    static propTypes = {
+      id: PropTypes.node
+    };
+    // eslint-enable
+
     constructor(props) {
       super(props);
 
